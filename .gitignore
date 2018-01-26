@@ -32,3 +32,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+ggj/ggj/Library/
+ggj/ggj/Temp/
