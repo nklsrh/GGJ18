@@ -40,6 +40,21 @@ public class RPlayerController : MonoBehaviour
     CarryItem currentCarryItem;
     bool isCarryingItem = false;
 
+    public bool IsCarryingItem
+    {
+        get
+        {
+            return currentCarryItem != null;
+        }
+    }
+    public CarryItem CarryingItem
+    {
+        get
+        {
+            return currentCarryItem;
+        }
+    }
+
     void Start()
     {
         rig = GetComponent<Rigidbody>();
