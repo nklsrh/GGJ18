@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PortController : MonoBehaviour {
+public class PortController : MonoBehaviour
+{
+    public CannonController cannon;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void OnTriggerEnter(Collider other)
+    {
+        TurnController ship = other.GetComponent<TurnController>();
+        if (ship != null)
+        {
+            Debug.Log("SHIP ENTERED PORT");
+        }
+    }
 }
