@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class TurnController : BaseShipController
     private bool isBraking = false;
     private float brakingAmountRequired = 1.0f;
     private float currentBrakingAmount = 1.0f;
+
 
     void Start()
     {
@@ -43,5 +45,10 @@ public class TurnController : BaseShipController
     public void Brake(float amount)
     {
         brakingAmountRequired = amount;
+    }
+
+    internal void PushBack(Vector3 directionAndForce)
+    {
+        rig.AddForce(directionAndForce * Time.deltaTime, ForceMode.Impulse);
     }
 }

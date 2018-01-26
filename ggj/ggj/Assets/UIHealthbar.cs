@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIHealthbar : MonoBehaviour
+public class UIHealthbar : UITrackedObject
 {
     public Image barImage;
-    public Vector3 offset;
 
     RPlayerController myPlayer;
     float timeSinceDamaged = 0;
@@ -18,6 +17,8 @@ public class UIHealthbar : MonoBehaviour
 
         myPlayer.health.onDamage += OnDamageChanged;
         myPlayer.health.onDeath += OnDeath;
+
+        Track(player.transform);
     }
 
     private void OnDeath()
@@ -39,11 +40,6 @@ public class UIHealthbar : MonoBehaviour
 
     void Update()
     {
-        if (myPlayer != null)
-        {
-            transform.position = myPlayer.transform.position + offset;
-        }
-
         if (timeSinceDamaged > 3.0f)
         {
             transform.gameObject.SetActive(false);

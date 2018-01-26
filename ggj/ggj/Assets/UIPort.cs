@@ -1,16 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIPort : MonoBehaviour {
+public class UIPort : UITrackedObject
+{
+    PortController myPort;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    internal void CreateForPort(PortController port)
+    {
+
+        Track(port.transform);
+    }
 }

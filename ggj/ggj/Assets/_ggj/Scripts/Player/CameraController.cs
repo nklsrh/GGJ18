@@ -13,8 +13,12 @@ public class CameraController : MonoBehaviour
     public bool isLookingAtTarget = false;
     public bool whenDrivingShipAlignWithForward = true;
 
+    public float FOVDriving = 25;
+    public float FOVRunning = 35;
+
     public float lookLerp = 10.0f;
     public float moveLerp = 10.0f;
+    public float fovLerp = 10.0f;
 
     public Camera Camera
     {
@@ -31,6 +35,8 @@ public class CameraController : MonoBehaviour
 
     Vector3 movementPosition;
     Vector3 lookAtPosition;
+
+    float fovCurrent = 35;
 
     void FixedUpdate()
     {
@@ -55,6 +61,7 @@ public class CameraController : MonoBehaviour
             targetPosition = ship.transform.position;
         }
 
+        float targetFOV = FOVRunning;
         Vector3 lookatOffset = Vector3.zero;
 
         Vector3 off = offset;
@@ -65,7 +72,11 @@ public class CameraController : MonoBehaviour
                 offsetShipDriving;
 
             lookatOffset = ship.transform.TransformPoint(offsetLookDriving) - targetPosition;
+
+            targetFOV = FOVDriving;
         }
+
+        Camera.fieldOfView = Mathf.Lerp(Camera.fieldOfView, targetFOV, fovLerp * Time.deltaTime);
 
         movementPosition = Vector3.Slerp(movementPosition, targetPosition + off, moveLerp * Time.deltaTime);
         lookAtPosition = Vector3.Slerp(lookAtPosition, targetPosition + lookatOffset, lookLerp * Time.deltaTime);

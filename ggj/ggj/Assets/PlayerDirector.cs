@@ -103,7 +103,10 @@ public class PlayerDirector : MonoBehaviour
             player.gameObject.SetActive(true);
             playerPrefab.gameObject.SetActive(false);
 
-            onPlayerCreated(player);
+            if (onPlayerCreated != null)
+            {
+                onPlayerCreated.Invoke(player);
+            }
 
             return player;
         }

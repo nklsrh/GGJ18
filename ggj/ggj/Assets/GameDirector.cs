@@ -9,9 +9,16 @@ public class GameDirector : MonoBehaviour {
 
     public UIManager uiManager;
 
-	void Start ()
+
+    public void StartGame()
     {
         playerDirector.onPlayerCreated += OnPlayerCreated;
+
+        PortController[] ports = FindObjectsOfType<PortController>();
+        for (int i = 0; i < ports.Length; i++)
+        {
+            uiManager.CreatePort(ports[i]);
+        }
 	}
 
     private void OnPlayerCreated(RPlayerController player)

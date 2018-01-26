@@ -91,7 +91,7 @@ public class RPlayerController : MonoBehaviour
 		if (Input.Action1.IsPressed)
         {
 			if (!ship.IsControlledByPlayer (this)) {
-				Debug.Log ("TAKE CONTROL OF " + ship.gameObject.name);
+				//Debug.Log ("TAKE CONTROL OF " + ship.gameObject.name);
 				ship.TakeControl (this);
 				this.ship = ship;
 				stuckTransform = trigger.transform;
@@ -102,7 +102,7 @@ public class RPlayerController : MonoBehaviour
 
     internal void RemoveControlOfCurrentShip(BaseShipController ship = null)
     {
-        Debug.Log("REMOVE CONTROL");
+        //Debug.Log("REMOVE CONTROL");
         this.ship.RemoveControl(this);
         this.ship = null;
     }
@@ -184,7 +184,10 @@ public class RPlayerController : MonoBehaviour
         {
             currentCarryItem = carryItem;
         }
-        onCanPickUp(this, carryItem);
+        if (onCanPickUp != null)
+        {
+            onCanPickUp(this, carryItem);
+        }
     }
 
     internal void CannotCarryItem(CarryItem carryItem)
@@ -193,7 +196,10 @@ public class RPlayerController : MonoBehaviour
         {
             currentCarryItem = null;
         }
-        onCannotPickUp(this, carryItem);
+        if (onCannotPickUp != null)
+        {
+            onCannotPickUp(this, carryItem);
+        }
     }
 
 
