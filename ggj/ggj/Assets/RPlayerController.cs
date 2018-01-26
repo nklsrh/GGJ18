@@ -99,11 +99,11 @@ public class RPlayerController : MonoBehaviour
             Vector3 movementInput3 = new Vector3(movementInput.x, 0, movementInput.y);
 
             Vector3 finalMovement = Camera.main.transform.TransformDirection(movementInput3);
-            //Vector3 finalMovement = movementInput3.normalized;
+            finalMovement = finalMovement.normalized;
+            Vector2 movementFlattened = new Vector2(finalMovement.x, finalMovement.z);
+            movementFlattened = movementFlattened.normalized;
 
-            rig.MovePosition(finalMovement.normalized * thrust * Time.deltaTime + transform.position);
-
-            //Vector3 movementFlattened = new Vector3(finalMovement.x, 0, finalMovement.z);
+            rig.MovePosition(new Vector3(movementFlattened.x, 0, movementFlattened.y) * thrust * Time.deltaTime + transform.position);
         }
     }
 
