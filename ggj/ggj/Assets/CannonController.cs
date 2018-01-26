@@ -57,19 +57,20 @@ public class CannonController : BaseShipController {
 		RPlayerController player = other.GetComponent<RPlayerController>();
 		if (player != null)
         {
-            Debug.Log("player");
+            //Debug.Log("player");
             if (player.IsCarryingItem)
             {
-                Debug.Log("Carrying CarryingItem");
+                //Debug.Log("Carrying CarryingItem");
 
-                if (player.CarryingItem is CannonBallItem)
-                {
-					Debug.Log ("Carrying ball");
-					CarryItem item = player.CarryingItem;
-					player.DropItem (item);
-					Destroy (item.gameObject);
-					loadedAmmo ++;
-                }
+				if (player.CarryingItem is CannonBallItem) {
+					if (loadedAmmo < 1) {
+						//Debug.Log ("Carrying ball");
+						CarryItem item = player.CarryingItem;
+						player.DropItem (item);
+						Destroy (item.gameObject);
+						loadedAmmo++;
+					}
+				}
 			}	
 		}
 	}
