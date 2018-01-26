@@ -64,14 +64,15 @@ public class RPlayerController : MonoBehaviour
 
     internal void GiveControl(BaseShipController ship, ShipTrigger trigger)
     {
-        if (!ship.IsControlledByPlayer(this))
-        {
-            Debug.Log("TAKE CONTROL OF " + ship.gameObject.name);
-            ship.TakeControl(this);
-            this.ship = ship;
-            stuckTransform = trigger.transform;
-            relativePositionToStuckTransform = trigger.transform.InverseTransformPoint(transform.position);
-        }
+		if (Input.Action1.IsPressed) {
+			if (!ship.IsControlledByPlayer (this)) {
+				Debug.Log ("TAKE CONTROL OF " + ship.gameObject.name);
+				ship.TakeControl (this);
+				this.ship = ship;
+				stuckTransform = trigger.transform;
+				relativePositionToStuckTransform = trigger.transform.InverseTransformPoint (transform.position);
+			}
+		}
     }
 
     internal void RemoveControlOfCurrentShip(BaseShipController ship = null)
@@ -127,16 +128,14 @@ public class RPlayerController : MonoBehaviour
                     }
                     else
                     {
-                        isCarryingItem = false;
-                        currentCarryItem.Drop(this);
+						DropItem (currentCarryItem);
                     }
                 }
                 else
                 {
                     if (Input.Action1.IsPressed)
                     {
-                        isCarryingItem = true;
-                        currentCarryItem.PickUp(this);
+						PickupItem (currentCarryItem);
                     }
                 }
             }
@@ -171,10 +170,19 @@ public class RPlayerController : MonoBehaviour
     }
 
 
-    public void PickupItem(ContextMenuItemAttribute i)
-    {
-        animationController.ShowHand(true);
+	public void PickupItem(CarryItem i)
+	{
+		isCarryingItem = true;
+		currentCarryItem.PickUp(this);
+        //animationController.ShowHand(true);
     }
+
+	public void DropItem(CarryItem i)
+	{
+		isCarryingItem = false;
+		currentCarryItem.Drop(this);
+		currentCarryItem = null;
+	}
 
     internal void SetInput(InputDevice inputDevice)
     {

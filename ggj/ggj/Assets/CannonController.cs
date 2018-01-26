@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CannonController : BaseShipController {
     
@@ -10,7 +11,11 @@ public class CannonController : BaseShipController {
 
     public Projectile templateProjectile;
 
+	public int loadedAmmo = 0;
+
     ProjectilePoolManager poolManager;
+
+	public GameObject NoAmmo;
 
     void Start()
     {
@@ -20,13 +25,19 @@ public class CannonController : BaseShipController {
 
     public void Fire()
     {
-        Projectile p = poolManager.AddProjectile(templateProjectile);
+		if (loadedAmmo > 0) {
+			Projectile p = poolManager.AddProjectile (templateProjectile);
 
-        p.transform.position = projectileSpawnTransform.position;
-        p.transform.rotation = projectileSpawnTransform.rotation;
-        p.transform.localScale = Vector3.one;
+			p.transform.position = projectileSpawnTransform.position;
+			p.transform.rotation = projectileSpawnTransform.rotation;
+			p.transform.localScale = Vector3.one;
 
-        p.SetVelocity(firePower * projectileSpawnTransform.forward);
+			p.SetVelocity (firePower * projectileSpawnTransform.forward);
+
+			loadedAmmo--;
+		} else {
+			//StartCoroutine(OutOfAmmo());
+		}
     }
 
     public override void ActionButton()
@@ -35,4 +46,34 @@ public class CannonController : BaseShipController {
 
         Fire();
     }
+
+	//public void OutOfAmmo () {
+	//	NoAmmo.SetActive (true);
+
+	//}
+
+	void OnTriggerEnter(Collider other)
+	{
+		RPlayerController player = other.GetComponent<RPlayerController>();
+		if (player != null)
+		{
+			if (player.IsCarryingItem) {
+
+				if (player.CarryingItem is CannonBallItem) {
+					Debug.Log ("Carrying ball");
+					CarryItem item = player.CarryingItem;
+					player.DropItem (item);
+					Destroy (item.gameObject);
+					loadedAmmo ++;
+				}
+			}	
+		}
+	}
+
+	IEnumerator OutOfAmmo () {
+		//NoAmmo.SetActive (true);
+
+		yield return new WaitForSeconds(1f);
+		//NoAmmo.SetActive (false);
+	}
 }

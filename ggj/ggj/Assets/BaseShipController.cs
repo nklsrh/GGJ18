@@ -33,12 +33,12 @@ public class BaseShipController : MonoBehaviour
 
     }
 
-    public void TakeControl (RPlayerController playerController)
+	public virtual void TakeControl (RPlayerController playerController)
     {
         playersControlling.Add(playerController);
     }
 
-    internal void RemoveControl(RPlayerController playerController)
+	internal virtual void RemoveControl(RPlayerController playerController)
     {
         playersControlling.Remove(playerController);
     }
