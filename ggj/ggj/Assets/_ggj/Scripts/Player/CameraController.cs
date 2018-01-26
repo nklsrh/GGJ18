@@ -2,11 +2,10 @@
 
 public class CameraController : MonoBehaviour
 {
-    public Vector3 offset = Vector3.up + Vector3.back * 20;
-    public bool useLocalOffset = false;
+    public PlayerDirector playerDirector;
 
-    public float lookForward = 1;
-    public float lookUsingVelocity = 1;
+    public Vector3 offset = Vector3.up + Vector3.back * 20;
+
     public bool disableRotation = false;
 
     public float lookLerp = 10.0f;
@@ -23,28 +22,10 @@ public class CameraController : MonoBehaviour
             return (thisCamera = GetComponent<Camera>());
         }
     }
-    
     Camera thisCamera;
-
-    public Transform targetTransform;
-    public RPlayerController targetPlayer;
 
     Vector3 movementPosition;
     Vector3 lookAtPosition;
-
-    public void Setup(Transform otherTarget)
-    {
-        this.targetTransform = otherTarget;
-        this.targetPlayer = null;
-    }
-
-    public void Setup(RPlayerController player)
-    {
-        this.targetPlayer = player;
-        this.targetTransform = player.transform;
-
-        lookAtPosition = player.transform.position;
-    }
 
     void Update()
     {
@@ -55,18 +36,18 @@ public class CameraController : MonoBehaviour
             transform.LookAt(lookAtPosition);
         }
 
-        if (targetTransform)
+        Vector3 targetPosition = Vector3.zero;
+        if (playerDirector.Players.Count > 0)
         {
-            Vector3 wantedPosition = useLocalOffset ?
-                targetTransform.TransformPoint(offset) :
-                targetTransform.position + offset;
-
-            movementPosition = Vector3.Slerp(movementPosition, wantedPosition, moveLerp * Time.deltaTime);
-            lookAtPosition = Vector3.Slerp(lookAtPosition, 
-                targetTransform.position + (targetTransform.forward * lookForward) + 
-                ((targetPlayer != null ? targetPlayer.Velocity : Vector3.zero) 
-                * lookUsingVelocity), lookLerp * Time.deltaTime);
+            foreach (RPlayerController rp in playerDirector.Players)
+            {
+                targetPosition += rp.transform.position;
+            }
+            targetPosition /= playerDirector.Players.Count;
         }
+
+        movementPosition = Vector3.Slerp(movementPosition, targetPosition + offset, moveLerp * Time.deltaTime);
+        lookAtPosition = Vector3.Slerp(lookAtPosition, targetPosition, lookLerp * Time.deltaTime);
     }
 
 }

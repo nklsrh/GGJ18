@@ -6,11 +6,18 @@ using UnityEngine;
 public class PlayerDirector : MonoBehaviour
 {
     public RPlayerController playerPrefab;
+    public List<RPlayerController> Players
+    {
+        get
+        {
+            return players;
+        }
+    }
+    List<RPlayerController> players = new List<RPlayerController>();
+
+    VirtualDevice virtualKeyboardDevice;
 
     const int MAX_PLAYERS = 4;
-
-    List<RPlayerController> players = new List<RPlayerController>();
-    VirtualDevice virtualKeyboardDevice;
 
     void Start()
     {
