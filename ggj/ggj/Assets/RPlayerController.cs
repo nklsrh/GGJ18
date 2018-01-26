@@ -43,15 +43,20 @@ public class RPlayerController : MonoBehaviour
 
     internal void GiveControl(BaseShipController ship, ShipTrigger trigger)
     {
-        Debug.Log("TAKE CONTROL OF " + ship.gameObject.name);
-        this.ship = ship;
-        stuckTransform = trigger.transform;
-        relativePositionToStuckTransform = trigger.transform.InverseTransformPoint(transform.position);
+        if (!ship.IsControlledByPlayer(this))
+        {
+            Debug.Log("TAKE CONTROL OF " + ship.gameObject.name);
+            ship.TakeControl(this);
+            this.ship = ship;
+            stuckTransform = trigger.transform;
+            relativePositionToStuckTransform = trigger.transform.InverseTransformPoint(transform.position);
+        }
     }
 
     internal void RemoveControlOfCurrentShip(BaseShipController ship = null)
     {
         Debug.Log("REMOVE CONTROL");
+        this.ship.RemoveControl(this);
         this.ship = null;
     }
 
@@ -93,10 +98,10 @@ public class RPlayerController : MonoBehaviour
             Vector2 movementInput = Input.LeftStick.Value;
             Vector3 movementInput3 = new Vector3(movementInput.x, 0, movementInput.y);
 
-            //Vector3 finalMovement = Camera.main.transform.TransformDirection(movementInput3);
-            Vector3 finalMovement = movementInput3.normalized;
+            Vector3 finalMovement = Camera.main.transform.TransformDirection(movementInput3);
+            //Vector3 finalMovement = movementInput3.normalized;
 
-            rig.MovePosition(finalMovement * thrust * Time.deltaTime + transform.position);
+            rig.MovePosition(finalMovement.normalized * thrust * Time.deltaTime + transform.position);
 
             //Vector3 movementFlattened = new Vector3(finalMovement.x, 0, finalMovement.z);
         }

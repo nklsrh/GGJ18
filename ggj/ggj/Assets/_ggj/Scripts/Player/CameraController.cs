@@ -3,10 +3,13 @@
 public class CameraController : MonoBehaviour
 {
     public PlayerDirector playerDirector;
+    public ShipController ship;
 
     public Vector3 offset = Vector3.up + Vector3.back * 20;
+    public Vector3 offsetShipDriving = Vector3.up + Vector3.back * 20;
 
-    public bool disableRotation = false;
+    public bool isLookingAtTarget = false;
+    public bool whenDrivingShipAlignWithForward = true;
 
     public float lookLerp = 10.0f;
     public float moveLerp = 10.0f;
@@ -31,7 +34,7 @@ public class CameraController : MonoBehaviour
     {
         transform.position = movementPosition;
 
-        if (!disableRotation)
+        if (isLookingAtTarget)
         {
             transform.LookAt(lookAtPosition);
         }
@@ -46,7 +49,15 @@ public class CameraController : MonoBehaviour
             targetPosition /= playerDirector.Players.Count;
         }
 
-        movementPosition = Vector3.Slerp(movementPosition, targetPosition + offset, moveLerp * Time.deltaTime);
+        Vector3 off = offset;
+        if (ship.IsPlayerControlled())
+        {
+            off = whenDrivingShipAlignWithForward ? 
+                ship.transform.TransformPoint(offsetShipDriving) :
+                offsetShipDriving;
+        }
+
+        movementPosition = Vector3.Slerp(movementPosition, targetPosition + off, moveLerp * Time.deltaTime);
         lookAtPosition = Vector3.Slerp(lookAtPosition, targetPosition, lookLerp * Time.deltaTime);
     }
 
