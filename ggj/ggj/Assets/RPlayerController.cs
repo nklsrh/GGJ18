@@ -37,10 +37,13 @@ public class RPlayerController : MonoBehaviour
     Transform stuckTransform;
     Vector3 relativePositionToStuckTransform;
 
+    CarryItem currentCarryItem;
+    bool isCarryingItem = false;
 
     void Start()
     {
         rig = GetComponent<Rigidbody>();
+        animationController.ShowHand(false);
     }
 
 
@@ -98,6 +101,31 @@ public class RPlayerController : MonoBehaviour
         }
         else
         {
+            if (currentCarryItem != null)
+            {
+                if (isCarryingItem)
+                {
+                    if (Input.Action1.IsPressed)
+                    {
+                        currentCarryItem.transform.position = animationController.rootHand.position;
+                        currentCarryItem.transform.rotation = animationController.rootHand.rotation;
+                    }
+                    else
+                    {
+                        isCarryingItem = false;
+                        currentCarryItem.Drop(this);
+                    }
+                }
+                else
+                {
+                    if (Input.Action1.IsPressed)
+                    {
+                        isCarryingItem = true;
+                        currentCarryItem.PickUp(this);
+                    }
+                }
+            }
+
             Vector2 movementInput = Input.LeftStick.Value;
             Vector3 movementInput3 = new Vector3(movementInput.x, 0, movementInput.y);
 
@@ -113,10 +141,18 @@ public class RPlayerController : MonoBehaviour
 
     internal void CanCarryItem(CarryItem carryItem)
     {
+        if (currentCarryItem == null)
+        {
+            currentCarryItem = carryItem;
+        }
     }
 
     internal void CannotCarryItem(CarryItem carryItem)
     {
+        if (currentCarryItem == carryItem)
+        {
+            currentCarryItem = null;
+        }
     }
 
 
