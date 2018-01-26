@@ -34,4 +34,4 @@ sysinfo.txt
 *.unitypackage
 ggj/ggj/Library/
 ggj/ggj/Temp/
-ggj/ggj/
+ggj/ggj/obj/
