@@ -88,6 +88,8 @@ public class PlayerDirector : MonoBehaviour
         if (players.Count < MAX_PLAYERS)
         {
             RPlayerController player = Instantiate(playerPrefab);
+            player.transform.SetParent(playerPrefab.transform.parent);
+            player.transform.position = playerPrefab.transform.position;
 
             player.SetInput(inputDevice);
             players.Add(player);

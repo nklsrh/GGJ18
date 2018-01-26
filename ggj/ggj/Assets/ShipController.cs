@@ -8,21 +8,21 @@ public class ShipController : BaseShipController {
     
     public float thrust = 1000;
     public float turnTorque = 100;
+    public float brakeLerp = 1f;
 
     private Rigidbody rig;
+    private bool isBraking = false;
+    private float brakingAmountRequired = 1.0f;
+    private float currentBrakingAmount = 1.0f;
 
 	void Start ()
     {
         rig = GetComponent<Rigidbody>();
 	}
 	
-    public void Drive()
-    {
-        rig.AddForce(transform.forward * thrust * Time.deltaTime);
-    }
-
     public void Turn(float amount)
     {
+        Debug.Log("TURBN: " + amount);
         rig.AddTorque(Vector3.up * amount * turnTorque * Time.deltaTime);
     }
 
@@ -33,10 +33,16 @@ public class ShipController : BaseShipController {
         Turn(stick.x);
     }
 
-    public override void ActionButton()
+    void Update()
     {
-        base.ActionButton();
+        rig.AddForce(transform.forward * thrust * brakingAmountRequired * Time.deltaTime);
+        brakingAmountRequired = 1;
 
-        Drive();
+        currentBrakingAmount = Mathf.Lerp(currentBrakingAmount, brakingAmountRequired, brakeLerp * Time.deltaTime);
+    }
+
+    public void Brake(float amount)
+    {
+        brakingAmountRequired = amount;
     }
 }

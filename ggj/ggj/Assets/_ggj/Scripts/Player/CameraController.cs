@@ -4,9 +4,11 @@ public class CameraController : MonoBehaviour
 {
     public PlayerDirector playerDirector;
     public ShipController ship;
+    public SailController sail;
 
     public Vector3 offset = Vector3.up + Vector3.back * 20;
     public Vector3 offsetShipDriving = Vector3.up + Vector3.back * 20;
+    public Vector3 offsetLookDriving = Vector3.up + Vector3.back * 20;
 
     public bool isLookingAtTarget = false;
     public bool whenDrivingShipAlignWithForward = true;
@@ -30,7 +32,7 @@ public class CameraController : MonoBehaviour
     Vector3 movementPosition;
     Vector3 lookAtPosition;
 
-    void Update()
+    void FixedUpdate()
     {
         transform.position = movementPosition;
 
@@ -48,17 +50,25 @@ public class CameraController : MonoBehaviour
             }
             targetPosition /= playerDirector.Players.Count;
         }
+        else
+        {
+            targetPosition = ship.transform.position;
+        }
+
+        Vector3 lookatOffset = Vector3.zero;
 
         Vector3 off = offset;
-        if (ship.IsPlayerControlled())
+        if (ship.IsPlayerControlled() || sail.IsPlayerControlled())
         {
             off = whenDrivingShipAlignWithForward ? 
-                ship.transform.TransformPoint(offsetShipDriving) :
+                ship.transform.TransformPoint(offsetShipDriving) - targetPosition :
                 offsetShipDriving;
+
+            lookatOffset = ship.transform.TransformPoint(offsetLookDriving) - targetPosition;
         }
 
         movementPosition = Vector3.Slerp(movementPosition, targetPosition + off, moveLerp * Time.deltaTime);
-        lookAtPosition = Vector3.Slerp(lookAtPosition, targetPosition, lookLerp * Time.deltaTime);
+        lookAtPosition = Vector3.Slerp(lookAtPosition, targetPosition + lookatOffset, lookLerp * Time.deltaTime);
     }
 
 }
