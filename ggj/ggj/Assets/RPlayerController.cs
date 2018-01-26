@@ -9,6 +9,9 @@ public class RPlayerController : MonoBehaviour
 {
     public float thrust = 100;
 
+    public CharacterAnimationController animationController;
+
+
     public Vector3 Velocity
     {
         get
@@ -107,6 +110,21 @@ public class RPlayerController : MonoBehaviour
         }
     }
 
+
+    internal void CanCarryItem(CarryItem carryItem)
+    {
+    }
+
+    internal void CannotCarryItem(CarryItem carryItem)
+    {
+    }
+
+
+    public void PickupItem(ContextMenuItemAttribute i)
+    {
+        animationController.ShowHand(true);
+    }
+
     internal void SetInput(InputDevice inputDevice)
     {
         this.inputDevice = inputDevice;
@@ -172,9 +190,9 @@ public class VirtualDevice : InputDevice
 
         // Read from keyboard input presses to submit into action buttons.
         UpdateWithState(InputControlType.Action1, Input.GetKey(KeyCode.Space), updateTick, deltaTime);
-        UpdateWithState(InputControlType.Action2, Input.GetKey(KeyCode.E), updateTick, deltaTime);
+        UpdateWithState(InputControlType.Action2, Input.GetKey(KeyCode.R), updateTick, deltaTime);
         UpdateWithState(InputControlType.Action3, Input.GetKey(KeyCode.F), updateTick, deltaTime);
-        UpdateWithState(InputControlType.Action4, Input.GetKey(KeyCode.Escape), updateTick, deltaTime);
+        UpdateWithState(InputControlType.Action4, Input.GetKey(KeyCode.E), updateTick, deltaTime);
 
         // Commit the current state of all controls.
         // This may only be done once per update tick. Updates submissions (like those above)

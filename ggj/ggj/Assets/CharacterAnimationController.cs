@@ -6,18 +6,17 @@ public class CharacterAnimationController : MonoBehaviour
 {
     public Transform rootHead;
     public Transform rootBody;
-    public Transform rootHandL;
-    public Transform rootHandR;
+    public Transform rootHand;
 
     public Transform transformHead;
     public Transform transformBody;
-    public Transform transformHandL;
-    public Transform transformHandR;
+    public Transform transformHand;
 
     void Start ()
     {
         SetTransformToRoot(transformHead, rootHead);
         SetTransformToRoot(transformBody, rootBody);
+        SetTransformToRoot(transformHand, rootHand);
     }
 
 
@@ -27,5 +26,11 @@ public class CharacterAnimationController : MonoBehaviour
         t.localPosition = Vector3.zero;
         t.localRotation = Quaternion.identity;
         t.localScale = Vector3.one;
+    }
+
+
+    public void ShowHand(bool isShown)
+    {
+        transformHand.gameObject.SetActive(isShown);
     }
 }

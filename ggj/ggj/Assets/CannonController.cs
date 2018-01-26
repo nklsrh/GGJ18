@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class CannonController : BaseShipController {
     
     public float firePower = 1000;
@@ -27,7 +26,7 @@ public class CannonController : BaseShipController {
         p.transform.rotation = projectileSpawnTransform.rotation;
         p.transform.localScale = Vector3.one;
 
-        p.SetVelocity(firePower * p.transform.forward);
+        p.SetVelocity(firePower * projectileSpawnTransform.forward);
     }
 
     public override void ActionButton()

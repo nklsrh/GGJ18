@@ -21,6 +21,8 @@ public class PlayerDirector : MonoBehaviour
 
     void Start()
     {
+        playerPrefab.gameObject.SetActive(false);
+
         virtualKeyboardDevice = new VirtualDevice();
         // We hook into the OnSetup callback to ensure the device is attached
         // after the InputManager has had a chance to initialize properly.
@@ -87,6 +89,8 @@ public class PlayerDirector : MonoBehaviour
     {
         if (players.Count < MAX_PLAYERS)
         {
+            playerPrefab.gameObject.SetActive(true);
+
             RPlayerController player = Instantiate(playerPrefab);
             player.transform.SetParent(playerPrefab.transform.parent);
             player.transform.position = playerPrefab.transform.position;
@@ -95,6 +99,7 @@ public class PlayerDirector : MonoBehaviour
             players.Add(player);
 
             player.gameObject.SetActive(true);
+            playerPrefab.gameObject.SetActive(false);
 
             return player;
         }

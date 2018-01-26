@@ -22,7 +22,6 @@ public class ShipController : BaseShipController {
 	
     public void Turn(float amount)
     {
-        Debug.Log("TURBN: " + amount);
         rig.AddTorque(Vector3.up * amount * turnTorque * Time.deltaTime);
     }
 
@@ -36,6 +35,7 @@ public class ShipController : BaseShipController {
     void Update()
     {
         rig.AddForce(transform.forward * thrust * brakingAmountRequired * Time.deltaTime);
+
         brakingAmountRequired = 1;
 
         currentBrakingAmount = Mathf.Lerp(currentBrakingAmount, brakingAmountRequired, brakeLerp * Time.deltaTime);
