@@ -6,7 +6,7 @@ public class ShipTrigger : MonoBehaviour {
 
     public BaseShipController ship;
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         RPlayerController rp = other.GetComponent<RPlayerController>();
 		if (rp != null) {
