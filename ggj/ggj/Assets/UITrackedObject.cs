@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UITrackedObject : MonoBehaviour
 {
     public Vector3 offset;
+    public bool trackObjectin3D = true;
 
     Transform trackedObject;
 
@@ -17,7 +18,7 @@ public class UITrackedObject : MonoBehaviour
     
     void Update()
     {
-        if (trackedObject != null)
+        if (trackedObject != null && trackObjectin3D)
         {
             transform.position = trackedObject.position + offset;
         }

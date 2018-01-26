@@ -8,7 +8,9 @@ public class GameDirector : MonoBehaviour {
     public PlayerDirector playerDirector;
 
     public UIManager uiManager;
+    public UIScreenManager uiScreenManager;
 
+    public ShipController ship;
 
     public void StartGame()
     {
@@ -19,10 +21,21 @@ public class GameDirector : MonoBehaviour {
         {
             uiManager.CreatePort(ports[i]);
         }
-	}
+
+        uiScreenManager.Setup(ship);
+
+    }
 
     private void OnPlayerCreated(RPlayerController player)
     {
         uiManager.CreatePlayer(player);
+    }
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.K))
+        {
+            ship.health.Damage(1.0f);
+        }
     }
 }

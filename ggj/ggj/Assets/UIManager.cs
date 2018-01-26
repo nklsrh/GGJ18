@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     public void CreatePlayer(RPlayerController player)
     {
         UIHealthbar newBar = InstantiateTransform(healthbarTemplate.transform, healthbarTemplate.transform.parent).GetComponent<UIHealthbar>();
-        newBar.CreateForPlayer(player);
+        newBar.Setup(player.health);
     }
 
     public void CreatePort(PortController port)

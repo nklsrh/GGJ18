@@ -4,7 +4,6 @@
 public class HealthController : MonoBehaviour
 {
     // __________________________________________________________________________________________EDITOR
-    public bool isTrackedByUI = true;
 
     public System.Action<float> onDamage;
     public System.Action<float> onRegen;

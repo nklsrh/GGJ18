@@ -7,18 +7,21 @@ using UnityEngine.UI;
 public class UIHealthbar : UITrackedObject
 {
     public Image barImage;
+    public Image backgroundParent;
+    public float hideAfterSeconds = 9999;
 
-    RPlayerController myPlayer;
+    HealthController health;
     float timeSinceDamaged = 0;
 
-    public void CreateForPlayer (RPlayerController player)
+    public void Setup (HealthController health)
     {
-        myPlayer = player;
+        this.health = health;
 
-        myPlayer.health.onDamage += OnDamageChanged;
-        myPlayer.health.onDeath += OnDeath;
+        health.onDamage += OnDamageChanged;
+        health.onDeath += OnDeath;
 
-        Track(player.transform);
+        OnDamageChanged(0);
+        Track(health.transform);
     }
 
     private void OnDeath()
@@ -27,22 +30,23 @@ public class UIHealthbar : UITrackedObject
         {
             Destroy(this.gameObject);
 
-            myPlayer.health.onDamage -= OnDamageChanged;
-            myPlayer.health.onDeath -= OnDeath;
+            health.onDamage -= OnDamageChanged;
+            health.onDeath -= OnDeath;
         }
     }
 
     private void OnDamageChanged(float damage)
     {
-        barImage.fillAmount = myPlayer.health.Health / myPlayer.health.HealthMax;
+        barImage.fillAmount = health.Health / health.HealthMax;
         timeSinceDamaged = 0;
+        backgroundParent.gameObject.SetActive(true);
     }
 
     void Update()
     {
-        if (timeSinceDamaged > 3.0f)
+        if (timeSinceDamaged > hideAfterSeconds)
         {
-            transform.gameObject.SetActive(false);
+            backgroundParent.gameObject.SetActive(false);
         }
         else
         {
