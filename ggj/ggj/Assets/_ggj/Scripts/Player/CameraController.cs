@@ -3,7 +3,7 @@
 public class CameraController : MonoBehaviour
 {
     public PlayerDirector playerDirector;
-    public ShipController ship;
+    public TurnController ship;
     public SailController sail;
 
     public Vector3 offset = Vector3.up + Vector3.back * 20;
