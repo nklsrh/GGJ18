@@ -55,16 +55,41 @@ public class RPlayerController : MonoBehaviour
         }
     }
 
+    public GameObject indicatorThingy;
+
+    public HealthController health;
+
+    public static System.Action<RPlayerController, CarryItem> onCanPickUp;
+    public static System.Action<RPlayerController, CarryItem> onCannotPickUp;
+
+
     void Start()
     {
         rig = GetComponent<Rigidbody>();
         animationController.ShowHand(false);
+
+        ShowIndicator(false);
+
+        onCanPickUp += OnCanPickUpFunction;
+        onCannotPickUp += OnCannotPickUpFunction;
+
+        health.Setup(100);
     }
 
+    private void OnCannotPickUpFunction(RPlayerController arg1, CarryItem arg2)
+    {
+
+    }
+
+    private void OnCanPickUpFunction(RPlayerController arg1, CarryItem arg2)
+    {
+
+    }
 
     internal void GiveControl(BaseShipController ship, ShipTrigger trigger)
     {
-		if (Input.Action1.IsPressed) {
+		if (Input.Action1.IsPressed)
+        {
 			if (!ship.IsControlledByPlayer (this)) {
 				Debug.Log ("TAKE CONTROL OF " + ship.gameObject.name);
 				ship.TakeControl (this);
@@ -159,6 +184,7 @@ public class RPlayerController : MonoBehaviour
         {
             currentCarryItem = carryItem;
         }
+        onCanPickUp(this, carryItem);
     }
 
     internal void CannotCarryItem(CarryItem carryItem)
@@ -167,6 +193,7 @@ public class RPlayerController : MonoBehaviour
         {
             currentCarryItem = null;
         }
+        onCannotPickUp(this, carryItem);
     }
 
 
@@ -187,6 +214,11 @@ public class RPlayerController : MonoBehaviour
     internal void SetInput(InputDevice inputDevice)
     {
         this.inputDevice = inputDevice;
+    }
+
+    public void ShowIndicator(bool shouldShow)
+    {
+        indicatorThingy.SetActive(shouldShow);
     }
 }
 

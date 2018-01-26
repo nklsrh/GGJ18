@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class HealthController : BaseObject
+public class HealthController : MonoBehaviour
 {
     // __________________________________________________________________________________________EDITOR
     public bool isTrackedByUI = true;
@@ -33,8 +33,6 @@ public class HealthController : BaseObject
     private bool isInvincible = false;
 
     // __________________________________________________________________________________________METHODS
-
-    public override void Setup() { }
 
     public void Setup(float initialHealth)
     {

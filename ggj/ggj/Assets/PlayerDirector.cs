@@ -15,6 +15,8 @@ public class PlayerDirector : MonoBehaviour
     }
     List<RPlayerController> players = new List<RPlayerController>();
 
+    public System.Action<RPlayerController> onPlayerCreated;
+
     VirtualDevice virtualKeyboardDevice;
 
     const int MAX_PLAYERS = 4;
@@ -100,6 +102,8 @@ public class PlayerDirector : MonoBehaviour
 
             player.gameObject.SetActive(true);
             playerPrefab.gameObject.SetActive(false);
+
+            onPlayerCreated(player);
 
             return player;
         }

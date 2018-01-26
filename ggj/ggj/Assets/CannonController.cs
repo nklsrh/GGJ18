@@ -62,13 +62,14 @@ public class CannonController : BaseShipController {
             {
                 Debug.Log("Carrying CarryingItem");
 
-                if (player.CarryingItem is CannonBallItem) {
+                if (player.CarryingItem is CannonBallItem)
+                {
 					Debug.Log ("Carrying ball");
 					CarryItem item = player.CarryingItem;
 					player.DropItem (item);
 					Destroy (item.gameObject);
 					loadedAmmo ++;
-				}
+                }
 			}	
 		}
 	}

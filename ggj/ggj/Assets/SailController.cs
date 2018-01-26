@@ -5,7 +5,7 @@ using UnityEngine;
 public class SailController : BaseShipController
 {
     public Transform sailTransform;
-    public ShipController ship;
+    public TurnController ship;
 
     float sailAmount = 0.0f;
     float brakingAmount = 0.0f;
