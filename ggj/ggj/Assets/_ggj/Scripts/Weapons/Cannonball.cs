@@ -10,7 +10,14 @@ public class Cannonball : Projectile
         if (ship != null)
         {
             ship.healthController.Damage(damage);
-            Die();
+            HitSomething();
+        }
+
+        PortController port = other.gameObject.GetComponent<PortController>();
+        if (port != null)
+        {
+            port.health.Damage(damage);
+            HitSomething();
         }
     }
 }

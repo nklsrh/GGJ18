@@ -44,7 +44,7 @@ public class HealthController : MonoBehaviour
 
     public void Damage(float amount)
     {
-        if (isInvincible || !IsAlive)
+        if (isInvincible)
         {
             return;
         }
