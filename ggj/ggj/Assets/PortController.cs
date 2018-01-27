@@ -10,6 +10,16 @@ public class PortController : MonoBehaviour
     float fireTime = 90.0f;
     BaseShipController detectedShip;
 
+	public PortController[] connectedPorts;
+	public GameObject radioWave;
+
+
+	void Start() {
+		SetUpPorts ();
+
+	}
+
+
     void OnTriggerEnter(Collider other)
     {
         BaseShipController ship = other.GetComponent<BaseShipController>();
@@ -35,4 +45,17 @@ public class PortController : MonoBehaviour
             }
         }
     }
+
+	void SetUpPorts() {
+
+		foreach (PortController port in connectedPorts)
+		{
+			Vector3 startPos = gameObject.transform.position + new Vector3 (0, 2, 0);
+
+			GameObject wave = Instantiate (radioWave, startPos, Quaternion.identity);
+
+			wave.GetComponent<RadioWaveController> ().endPos = port.transform.position + new Vector3 (0, 2, 0);
+			wave.GetComponent<RadioWaveController> ().startPos = startPos;
+		}
+	}
 }
