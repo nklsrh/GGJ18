@@ -19,7 +19,7 @@ public class TurnController : BaseShipController
 
     private Rigidbody rig;
     private bool isBraking = false;
-    private float brakingAmountRequired = 1.0f;
+    private float speedPercentage = 0.0f;
     private float currentBrakingAmount = 1.0f;
 
     private float rotationAmount = 0;
@@ -27,6 +27,7 @@ public class TurnController : BaseShipController
     void Start()
     {
         rig = GetComponent<Rigidbody>();
+        speedPercentage = 0.0f;
     }
 
     public void Turn(float amount)
@@ -52,11 +53,9 @@ public class TurnController : BaseShipController
 
     protected override void Update()
     {
-        rig.AddForce(transform.forward * thrust * brakingAmountRequired * Time.deltaTime);
+        rig.AddForce(transform.forward * thrust * speedPercentage * Time.deltaTime);
 
-        brakingAmountRequired = 1;
-
-        currentBrakingAmount = Mathf.Lerp(currentBrakingAmount, brakingAmountRequired, brakeLerp * Time.deltaTime);
+        currentBrakingAmount = Mathf.Lerp(currentBrakingAmount, speedPercentage, brakeLerp * Time.deltaTime);
 
         wheelBaseTransform.Rotate(Vector3.up * rotationAmount * wheelTurnMultiplier * Time.deltaTime, Space.Self);
 
@@ -65,9 +64,9 @@ public class TurnController : BaseShipController
         base.Update();
     }
 
-    public void Brake(float amount)
+    public void SetSailPercentage(float amount)
     {
-        brakingAmountRequired = amount;
+        speedPercentage = amount;
     }
 
     internal void PushBack(Vector3 directionAndForce)

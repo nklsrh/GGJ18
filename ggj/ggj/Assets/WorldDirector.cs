@@ -46,8 +46,16 @@ public class WorldDirector : MonoBehaviour
 
     void SetupShipRouteRandom(AIShipController ship, PortController port)
     {
-        int randomPortIndex = Random.Range(0, port.connectedPorts.Length);
-        ship.SetTarget(port.connectedPorts[randomPortIndex].transform);
-        ship.transform.position = port.transform.position + (port.connectedPorts[randomPortIndex].transform.position - port.transform.position) * 0.1f;
+        if (port.connectedPorts.Length > 0)
+        {
+            int randomPortIndex = Random.Range(0, port.connectedPorts.Length);
+            PortController newPort = port.connectedPorts[randomPortIndex];
+            ship.SetTarget(newPort.transform);
+            ship.transform.position = port.transform.position + (newPort.transform.position - port.transform.position) * 0.1f;
+        }
+        else
+        {
+            Debug.LogError("Port: " + port.gameObject.name + " has no connected ports!");
+        }
     }
 }

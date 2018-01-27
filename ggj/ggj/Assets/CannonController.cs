@@ -30,20 +30,26 @@ public class CannonController : BaseShipController {
 
     public void Fire()
     {
-		if (loadedAmmo > 0) {
-			Projectile p = poolManager.AddProjectile (templateProjectile);
+        if (loadedAmmo > 0)
+        {
+            Projectile p = poolManager.AddProjectile(templateProjectile);
 
-			p.transform.position = projectileSpawnTransform.position;
-			p.transform.rotation = projectileSpawnTransform.rotation;
-			p.transform.localScale = Vector3.one;
+            p.transform.position = projectileSpawnTransform.position;
+            p.transform.rotation = projectileSpawnTransform.rotation;
+            p.transform.localScale = Vector3.one;
 
-			p.SetVelocity (firePower * projectileSpawnTransform.forward);
+            p.SetVelocity(firePower * projectileSpawnTransform.forward);
 
-			loadedAmmo--;
-			cannonFire.Play ();
-		} else {
-			//StartCoroutine(OutOfAmmo());
-		}
+            loadedAmmo--;
+            if (cannonFire != null)
+            {
+                cannonFire.Play();
+            }
+        }
+        else
+        {
+            //StartCoroutine(OutOfAmmo());
+        }
     }
 
     public override void ActionButton()
@@ -104,10 +110,16 @@ public class CannonController : BaseShipController {
     {
         base.Update();
 
-		if (loadedAmmo > 0) {
-			aimAid.SetActive (true);
-		} else {
-			aimAid.SetActive (false);
-		}
+        if (aimAid != null)
+        {
+            if (loadedAmmo > 0)
+            {
+                aimAid.SetActive(true);
+            }
+            else
+            {
+                aimAid.SetActive(false);
+            }
+        }
     }
 }

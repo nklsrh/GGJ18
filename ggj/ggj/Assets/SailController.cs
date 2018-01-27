@@ -12,7 +12,7 @@ public class SailController : BaseShipController
 
     public override void LeftStick(Vector2 stick)
     {
-        brakingAmount = Mathf.Clamp01(stick.y);
+        brakingAmount = Mathf.Clamp01((stick.y - 1.0f) / -2.0f);
 
         Braking(brakingAmount);
 
@@ -21,7 +21,7 @@ public class SailController : BaseShipController
 
     void Braking(float amount)
     {
-        ship.Brake(amount);
+        ship.SetSailPercentage(amount);
     }
 
     protected override void Update()

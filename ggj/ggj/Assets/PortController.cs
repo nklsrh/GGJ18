@@ -15,7 +15,21 @@ public class PortController : MonoBehaviour
 	public GameObject radioWave;
     public Transform shipDockTransform;
 
-	public void Setup()
+    public HealthController health;
+    public LootDropper loot;
+    public Transform lootSpawnTransform;
+
+    void Start()
+    {
+        health.onDeath += OnDeath;
+    }
+
+    private void OnDeath()
+    {
+        loot.DropLoot(lootSpawnTransform.position);
+    }
+
+    public void Setup()
     {
 		SetUpPorts ();
 	}
