@@ -50,5 +50,6 @@ public class TurnController : BaseShipController
     internal void PushBack(Vector3 directionAndForce)
     {
         rig.AddForce(directionAndForce * Time.deltaTime, ForceMode.Impulse);
+        rig.AddTorque(Vector3.up * 0.0000001f * directionAndForce.sqrMagnitude);
     }
 }

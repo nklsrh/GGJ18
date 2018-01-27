@@ -5,13 +5,34 @@ using UnityEngine;
 public class PortController : MonoBehaviour
 {
     public CannonController cannon;
+    public float fireRate = 1.0f;
+
+    float fireTime = 90.0f;
+    BaseShipController detectedShip;
 
     void OnTriggerEnter(Collider other)
     {
-        TurnController ship = other.GetComponent<TurnController>();
+        BaseShipController ship = other.GetComponent<BaseShipController>();
         if (ship != null)
         {
-            Debug.Log("SHIP ENTERED PORT");
+            detectedShip = ship;
+        }
+    }
+
+    void Update()
+    {
+        if (detectedShip != null)
+        {
+            if (fireTime >= fireRate)
+            {
+                cannon.transform.LookAt(detectedShip.transform.position + Vector3.up * 100);
+                cannon.Fire();
+                fireTime = 0;
+            }
+            else
+            {
+                fireTime += Time.deltaTime;
+            }
         }
     }
 }
