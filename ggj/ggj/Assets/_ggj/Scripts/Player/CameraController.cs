@@ -20,6 +20,9 @@ public class CameraController : MonoBehaviour
     public float moveLerp = 10.0f;
     public float fovLerp = 10.0f;
 
+    public float lookLerpDrive = 0.5f;
+    public float lookLerpLerp = 10.0f;
+
     public Camera Camera
     {
         get
@@ -37,6 +40,7 @@ public class CameraController : MonoBehaviour
     Vector3 lookAtPosition;
 
     float fovCurrent = 35;
+    float currentLookLerp = 0;
 
     void FixedUpdate()
     {
@@ -63,6 +67,7 @@ public class CameraController : MonoBehaviour
 
         float targetFOV = FOVRunning;
         Vector3 lookatOffset = Vector3.zero;
+        float lookLerpFinal = lookLerp;
 
         Vector3 off = offset;
         if (ship.IsPlayerControlled() || sail.IsPlayerControlled())
@@ -74,12 +79,16 @@ public class CameraController : MonoBehaviour
             lookatOffset = ship.transform.TransformPoint(offsetLookDriving) - targetPosition;
 
             targetFOV = FOVDriving;
+
+            lookLerpFinal = lookLerpDrive;
         }
+
+        currentLookLerp = Mathf.Lerp(currentLookLerp, lookLerpFinal, lookLerpLerp * Time.deltaTime);
 
         Camera.fieldOfView = Mathf.Lerp(Camera.fieldOfView, targetFOV, fovLerp * Time.deltaTime);
 
         movementPosition = Vector3.Slerp(movementPosition, targetPosition + off, moveLerp * Time.deltaTime);
-        lookAtPosition = Vector3.Slerp(lookAtPosition, targetPosition + lookatOffset, lookLerp * Time.deltaTime);
+        lookAtPosition = Vector3.Slerp(lookAtPosition, targetPosition + lookatOffset, lookLerpFinal * Time.deltaTime);
     }
 
 }

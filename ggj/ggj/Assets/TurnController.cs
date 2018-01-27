@@ -10,6 +10,8 @@ public class TurnController : BaseShipController
     public float turnTorque = 100;
     public float brakeLerp = 1f;
 
+    public float maxAngularVelocity = 1000;
+
     private Rigidbody rig;
     private bool isBraking = false;
     private float brakingAmountRequired = 1.0f;
@@ -23,7 +25,15 @@ public class TurnController : BaseShipController
 
     public void Turn(float amount)
     {
-        rig.AddTorque(Vector3.up * amount * turnTorque * Time.deltaTime);
+        if (rig.angularVelocity.sqrMagnitude < maxAngularVelocity)
+        {
+            rig.AddTorque(Vector3.up * amount * turnTorque * Time.deltaTime);
+        }
+        else
+        {
+            rig.angularVelocity = rig.angularVelocity.normalized * maxAngularVelocity * maxAngularVelocity;
+        }
+        rig.transform.rotation = Quaternion.Euler(0, rig.transform.rotation.eulerAngles.y, 0);
     }
 
     public override void LeftStick(Vector2 stick)
