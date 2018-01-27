@@ -7,7 +7,7 @@ public class GameDirector : MonoBehaviour {
 
     public PlayerDirector playerDirector;
     public WorldDirector worldDirector;
-
+	public Boombox boomBox;
     public UIManager uiManager;
     public UIScreenManager uiScreenManager;
 
@@ -33,6 +33,7 @@ public class GameDirector : MonoBehaviour {
     private void OnPlayerCreated(RPlayerController player)
     {
         uiManager.CreatePlayer(player);
+		boomBox.PlayTrack (playerDirector.Players.Count);
     }
 
     void Update()
