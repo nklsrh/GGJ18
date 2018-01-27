@@ -53,6 +53,14 @@ public class PlayerDirector : MonoBehaviour
                 CreatePlayer(input);
             }
         }
+
+        for (int i = 0; i < Players.Count; i++)
+        {
+            if (Players[i].transform.position.y < -2)
+            {
+                Players[i].Respawn(spawnPoint);
+            }
+        }
     }
 
     bool PressedJoin(InputDevice inputDevice)

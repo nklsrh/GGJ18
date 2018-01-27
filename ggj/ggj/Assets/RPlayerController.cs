@@ -81,6 +81,14 @@ public class RPlayerController : MonoBehaviour
         health.Setup(100);
     }
 
+    internal void Respawn(Transform spawnPoint)
+    {
+        transform.position = spawnPoint.position;
+        transform.rotation = Quaternion.identity;
+
+        rig.velocity = Vector3.zero;
+    }
+
     private void OnCannotPickUpFunction(RPlayerController arg1, CarryItem arg2)
     {
 
