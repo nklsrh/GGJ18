@@ -4,28 +4,17 @@ using UnityEngine;
 
 public class RepairControl : BaseShipController {
 
-//	public BaseShipController ship;
+    public float regenAmountPerSecond = 10.0f;
 
-//	void OnTriggerStay(Collider other)
-//	{
-//		RPlayerController rp = other.GetComponent<RPlayerController> ();
-//		if (rp != null) {
-//			if (rp.IsCarryingItem == false) {
-//				rp.GiveControl (ship, this);
-//			}
-//		}
-//	}
-//
-	public void Repair() {
-		//shiphealth +
-		Debug.Log("Ship Health ++");
+	public void Repair()
+    {
+        MainShip.health.Regen(regenAmountPerSecond * Time.deltaTime);
 	}
 
-	public override void ActionButton()
-	{
-		base.ActionButton();
+    public override void ActionButtonDown()
+    {
+        base.ActionButtonDown();
 
-		Repair();
-	}
-
+        Repair();
+    }
 }

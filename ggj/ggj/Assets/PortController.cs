@@ -6,6 +6,7 @@ public class PortController : MonoBehaviour
 {
     public CannonController cannon;
     public float fireRate = 1.0f;
+    public PortTower tower;
 
     float fireTime = 90.0f;
     BaseShipController detectedShip;

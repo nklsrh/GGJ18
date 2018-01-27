@@ -9,19 +9,12 @@ public class ShipTrigger : MonoBehaviour {
     void OnTriggerStay(Collider other)
     {
         RPlayerController rp = other.GetComponent<RPlayerController>();
-		if (rp != null) {
-			if (rp.IsCarryingItem == false) {
-				rp.GiveControl (ship, this);
-			}
-		}
+        if (rp != null)
+        {
+            if (rp.IsCarryingItem == false)
+            {
+                rp.GiveControl(ship, this);
+            }
+        }
     }
-
-    //void OnTriggerExit(Collider other)
-    //{
-    //    RPlayerController rp = other.GetComponent<RPlayerController>();
-    //    if (rp != null)
-    //    {
-    //        rp.RemoveControlOfCurrentShip(ship);
-    //    }
-    //}
 }

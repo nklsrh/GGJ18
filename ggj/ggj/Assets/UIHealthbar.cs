@@ -18,6 +18,7 @@ public class UIHealthbar : UITrackedObject
         this.health = health;
 
         health.onDamage += OnDamageChanged;
+        health.onRegen += OnDamageChanged;
         health.onDeath += OnDeath;
 
         OnDamageChanged(0);
@@ -32,6 +33,7 @@ public class UIHealthbar : UITrackedObject
 
             health.onDamage -= OnDamageChanged;
             health.onDeath -= OnDeath;
+            health.onRegen -= OnDamageChanged;
         }
     }
 

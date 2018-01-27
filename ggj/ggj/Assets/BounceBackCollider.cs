@@ -12,7 +12,7 @@ public class BounceBackCollider : MonoBehaviour {
         TurnController ship = other.gameObject.GetComponent<TurnController>();
         if (ship != null)
         {
-            Debug.Log("DASHED SHIP");
+            //Debug.Log("DASHED SHIP");
 
             ship.PushBack(-other.relativeVelocity * pushBackForce);
             ship.MainShip.health.Damage(damageToShip);
