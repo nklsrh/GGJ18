@@ -15,7 +15,7 @@ public class UICompass : MonoBehaviour
     {
         if (myShip)
         {
-            transform.localRotation = Quaternion.Euler(0, 0, myShip.transform.rotation.y);
+            transform.localRotation = Quaternion.Euler(0, 0, myShip.transform.rotation.eulerAngles.y);
         }
     }
 }

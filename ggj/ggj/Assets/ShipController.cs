@@ -6,6 +6,7 @@ using UnityEngine;
 public class ShipController : BaseShipController
 {
     public HealthController health;
+    public Transform playerSpawnPoint;
 
     void Start()
     {

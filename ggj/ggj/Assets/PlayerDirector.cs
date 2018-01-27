@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerDirector : MonoBehaviour
 {
@@ -17,9 +18,12 @@ public class PlayerDirector : MonoBehaviour
 
     public System.Action<RPlayerController> onPlayerCreated;
 
+
     VirtualDevice virtualKeyboardDevice;
 
     const int MAX_PLAYERS = 4;
+
+    Transform spawnPoint;
 
     void Start()
     {
@@ -60,6 +64,10 @@ public class PlayerDirector : MonoBehaviour
     }
 
 
+    internal void SetSpawnPoint(Transform playerSpawnPoint)
+    {
+        spawnPoint = playerSpawnPoint;
+    }
 
 
     RPlayerController FindPlayerFromInput(InputDevice inputDevice)
@@ -95,7 +103,7 @@ public class PlayerDirector : MonoBehaviour
 
             RPlayerController player = Instantiate(playerPrefab);
             player.transform.SetParent(playerPrefab.transform.parent);
-            player.transform.position = playerPrefab.transform.position;
+            player.transform.position = spawnPoint.position;
 
             player.SetInput(inputDevice);
             players.Add(player);

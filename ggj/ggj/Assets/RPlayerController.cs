@@ -11,6 +11,7 @@ public class RPlayerController : MonoBehaviour
 
     public CharacterAnimationController animationController;
 
+    public float lookLerp = 10.0f;
 
     public Vector3 Velocity
     {
@@ -62,6 +63,8 @@ public class RPlayerController : MonoBehaviour
     public static System.Action<RPlayerController, CarryItem> onCanPickUp;
     public static System.Action<RPlayerController, CarryItem> onCannotPickUp;
 
+
+    Vector3 lookingAt;
 
     void Start()
     {
@@ -173,7 +176,13 @@ public class RPlayerController : MonoBehaviour
             Vector2 movementFlattened = new Vector2(finalMovement.x, finalMovement.z);
             movementFlattened = movementFlattened.normalized;
 
-            rig.MovePosition(new Vector3(movementFlattened.x, 0, movementFlattened.y) * thrust * Time.deltaTime + transform.position);
+            finalMovement = new Vector3(movementFlattened.x, 0, movementFlattened.y);
+            rig.MovePosition(finalMovement * thrust * Time.deltaTime + transform.position);
+
+            // slowly look at the target
+            lookingAt = Vector3.Slerp(lookingAt, 9999 * finalMovement + rig.transform.position, lookLerp * Time.deltaTime);
+
+            rig.MoveRotation(Quaternion.LookRotation(lookingAt, Vector3.up));
         }
     }
 
