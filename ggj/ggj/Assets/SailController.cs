@@ -28,6 +28,6 @@ public class SailController : BaseShipController
     {
         sailAmount = Mathf.Lerp(sailAmount, brakingAmount, 0.5f * Time.deltaTime);
 
-        sailTransform.localScale = new Vector3(1, 1, 5 * sailAmount);
+        sailTransform.localScale = new Vector3(1, 1, 0.2f + 0.65f * sailAmount);
     }
 }

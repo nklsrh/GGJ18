@@ -6,10 +6,105 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Cannon_FL
+    100004: Cannon_FR
+    100006: Cannon_RL
+    100008: Cannon_RR
+    100010: ColliderFL
+    100012: ColliderForward
+    100014: ColliderFR
+    100016: ColliderLeft
+    100018: ColliderRear
+    100020: ColliderRight
+    100022: Flag
+    100024: Ground.Collider
+    100026: Hull
+    100028: Mast
+    100030: Sail
+    100032: Sail.001
+    100034: Sail.002
+    100036: Wheel
+    100038: WheelBase
     400000: //RootNode
+    400002: Cannon_FL
+    400004: Cannon_FR
+    400006: Cannon_RL
+    400008: Cannon_RR
+    400010: ColliderFL
+    400012: ColliderForward
+    400014: ColliderFR
+    400016: ColliderLeft
+    400018: ColliderRear
+    400020: ColliderRight
+    400022: Flag
+    400024: Ground.Collider
+    400026: Hull
+    400028: Mast
+    400030: Sail
+    400032: Sail.001
+    400034: Sail.002
+    400036: Wheel
+    400038: WheelBase
     2300000: //RootNode
+    2300002: Cannon_FL
+    2300004: Cannon_FR
+    2300006: Cannon_RL
+    2300008: Cannon_RR
+    2300010: ColliderFL
+    2300012: ColliderForward
+    2300014: ColliderFR
+    2300016: ColliderLeft
+    2300018: ColliderRear
+    2300020: ColliderRight
+    2300022: Flag
+    2300024: Ground.Collider
+    2300026: Hull
+    2300028: Mast
+    2300030: Sail
+    2300032: Sail.001
+    2300034: Sail.002
+    2300036: Wheel
+    2300038: WheelBase
     3300000: //RootNode
+    3300002: Cannon_FL
+    3300004: Cannon_FR
+    3300006: Cannon_RL
+    3300008: Cannon_RR
+    3300010: ColliderFL
+    3300012: ColliderForward
+    3300014: ColliderFR
+    3300016: ColliderLeft
+    3300018: ColliderRear
+    3300020: ColliderRight
+    3300022: Flag
+    3300024: Ground.Collider
+    3300026: Hull
+    3300028: Mast
+    3300030: Sail
+    3300032: Sail.001
+    3300034: Sail.002
+    3300036: Wheel
+    3300038: WheelBase
     4300000: pCube2
+    4300002: ColliderForward
+    4300004: ColliderFL
+    4300006: ColliderFR
+    4300008: ColliderRear
+    4300010: ColliderRight
+    4300012: ColliderLeft
+    4300014: Ground.Collider
+    4300016: Sail.002
+    4300018: Sail.001
+    4300020: WheelBase
+    4300022: Cannon_FL
+    4300024: Flag
+    4300026: Wheel
+    4300028: Hull
+    4300030: Sail
+    4300032: Cannon_RR
+    4300034: Mast
+    4300036: Cannon_RL
+    4300038: Cannon_FR
     9500000: //RootNode
   materials:
     importMaterials: 1
