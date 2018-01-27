@@ -1,0 +1,223 @@
+fileFormatVersion: 2
+guid: 2b90b94c8e945d240a4ff89fd1bb0320
+timeCreated: 1517055412
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: group_1652407323
+    100002: group_2012213551
+    100004: mesh_1043152443
+    100006: mesh_1052151225
+    100008: mesh_1099241048
+    100010: mesh_1180696515
+    100012: mesh_1203509567
+    100014: mesh_1218096707
+    100016: mesh_1218922174
+    100018: mesh_1261123680
+    100020: mesh_1317139868
+    100022: mesh_1388036914
+    100024: mesh_1423316105
+    100026: mesh_161008282
+    100028: mesh_1760450947
+    100030: mesh_1819872785
+    100032: mesh_1864149666
+    100034: mesh_2018329878
+    100036: mesh_2096047853
+    100038: mesh_226312246
+    100040: mesh_310615892
+    100042: mesh_336294329
+    100044: mesh_362589451
+    100046: mesh_444722293
+    100048: mesh_499985679
+    100050: mesh_6712564
+    100052: mesh_780666706
+    100054: mesh_802177887
+    100056: mesh_983706439
+    100058: mesh_998265266
+    100060: //RootNode
+    400000: group_1652407323
+    400002: group_2012213551
+    400004: mesh_1043152443
+    400006: mesh_1052151225
+    400008: mesh_1099241048
+    400010: mesh_1180696515
+    400012: mesh_1203509567
+    400014: mesh_1218096707
+    400016: mesh_1218922174
+    400018: mesh_1261123680
+    400020: mesh_1317139868
+    400022: mesh_1388036914
+    400024: mesh_1423316105
+    400026: mesh_161008282
+    400028: mesh_1760450947
+    400030: mesh_1819872785
+    400032: mesh_1864149666
+    400034: mesh_2018329878
+    400036: mesh_2096047853
+    400038: mesh_226312246
+    400040: mesh_310615892
+    400042: mesh_336294329
+    400044: mesh_362589451
+    400046: mesh_444722293
+    400048: mesh_499985679
+    400050: mesh_6712564
+    400052: mesh_780666706
+    400054: mesh_802177887
+    400056: mesh_983706439
+    400058: mesh_998265266
+    400060: //RootNode
+    2300000: mesh_1043152443
+    2300002: mesh_1052151225
+    2300004: mesh_1099241048
+    2300006: mesh_1180696515
+    2300008: mesh_1203509567
+    2300010: mesh_1218096707
+    2300012: mesh_1218922174
+    2300014: mesh_1261123680
+    2300016: mesh_1317139868
+    2300018: mesh_1388036914
+    2300020: mesh_1423316105
+    2300022: mesh_161008282
+    2300024: mesh_1760450947
+    2300026: mesh_1819872785
+    2300028: mesh_1864149666
+    2300030: mesh_2018329878
+    2300032: mesh_2096047853
+    2300034: mesh_226312246
+    2300036: mesh_310615892
+    2300038: mesh_336294329
+    2300040: mesh_362589451
+    2300042: mesh_444722293
+    2300044: mesh_499985679
+    2300046: mesh_6712564
+    2300048: mesh_780666706
+    2300050: mesh_802177887
+    2300052: mesh_983706439
+    2300054: mesh_998265266
+    3300000: mesh_1043152443
+    3300002: mesh_1052151225
+    3300004: mesh_1099241048
+    3300006: mesh_1180696515
+    3300008: mesh_1203509567
+    3300010: mesh_1218096707
+    3300012: mesh_1218922174
+    3300014: mesh_1261123680
+    3300016: mesh_1317139868
+    3300018: mesh_1388036914
+    3300020: mesh_1423316105
+    3300022: mesh_161008282
+    3300024: mesh_1760450947
+    3300026: mesh_1819872785
+    3300028: mesh_1864149666
+    3300030: mesh_2018329878
+    3300032: mesh_2096047853
+    3300034: mesh_226312246
+    3300036: mesh_310615892
+    3300038: mesh_336294329
+    3300040: mesh_362589451
+    3300042: mesh_444722293
+    3300044: mesh_499985679
+    3300046: mesh_6712564
+    3300048: mesh_780666706
+    3300050: mesh_802177887
+    3300052: mesh_983706439
+    3300054: mesh_998265266
+    4300000: mesh_499985679
+    4300002: mesh_1261123680
+    4300004: mesh_1423316105
+    4300006: mesh_310615892
+    4300008: mesh_1760450947
+    4300010: mesh_1218096707
+    4300012: mesh_1388036914
+    4300014: mesh_1203509567
+    4300016: mesh_1180696515
+    4300018: mesh_1864149666
+    4300020: mesh_998265266
+    4300022: mesh_1819872785
+    4300024: mesh_1099241048
+    4300026: mesh_983706439
+    4300028: mesh_802177887
+    4300030: mesh_1218922174
+    4300032: mesh_2096047853
+    4300034: mesh_444722293
+    4300036: mesh_226312246
+    4300038: mesh_362589451
+    4300040: mesh_1043152443
+    4300042: mesh_2018329878
+    4300044: mesh_161008282
+    4300046: mesh_780666706
+    4300048: mesh_1317139868
+    4300050: mesh_336294329
+    4300052: mesh_1052151225
+    4300054: mesh_6712564
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
