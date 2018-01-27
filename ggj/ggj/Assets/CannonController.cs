@@ -21,6 +21,8 @@ public class CannonController : BaseShipController {
 
 	public GameObject aimAid;
 
+    public ExplosionObject explosion;
+
     void Start()
     {
         poolManager = new ProjectilePoolManager(5);
@@ -44,6 +46,11 @@ public class CannonController : BaseShipController {
             if (cannonFire != null)
             {
                 cannonFire.Play();
+            }
+
+            if (explosion != null)
+            {
+                explosion.Setup();
             }
         }
         else
