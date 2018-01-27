@@ -6,6 +6,7 @@ public class PortController : MonoBehaviour
 {
     public CannonController cannon;
     public float fireRate = 1.0f;
+    public PortTower tower;
 
     float fireTime = 90.0f;
     BaseShipController detectedShip;
@@ -17,7 +18,6 @@ public class PortController : MonoBehaviour
     public HealthController health;
     public LootDropper loot;
     public Transform lootSpawnTransform;
-
     public ExplosionObject explosion;
 
     void Start()
@@ -28,6 +28,10 @@ public class PortController : MonoBehaviour
     private void OnDeath()
     {
         loot.DropLoot(lootSpawnTransform.position);
+        if (explosion != null)
+        {
+            explosion.Setup();
+        }
     }
 
     public void Setup()
@@ -44,20 +48,32 @@ public class PortController : MonoBehaviour
             detectedShip = ship;
         }
     }
+    void OnTriggerExit(Collider other)
+    {
+        BaseShipController ship = other.GetComponent<BaseShipController>();
+        if (detectedShip != null && ship != null)
+        {
+            detectedShip = null;
+        }
+    }
+
 
     void Update()
     {
-        if (detectedShip != null)
+        if (health.IsAlive)
         {
-            if (fireTime >= fireRate)
+            if (detectedShip != null)
             {
-                cannon.transform.LookAt(detectedShip.transform.position + Vector3.up * 100);
-                cannon.Fire();
-                fireTime = 0;
-            }
-            else
-            {
-                fireTime += Time.deltaTime;
+                if (fireTime >= fireRate)
+                {
+                    cannon.transform.LookAt(detectedShip.transform.position + Vector3.up * 100);
+                    cannon.Fire();
+                    fireTime = 0;
+                }
+                else
+                {
+                    fireTime += Time.deltaTime;
+                }
             }
         }
     }

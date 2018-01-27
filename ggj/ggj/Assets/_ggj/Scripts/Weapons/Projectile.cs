@@ -9,7 +9,6 @@ public class Projectile : BaseObject
     public float damage;
     public List<AudioSource> audioBlastOptions;
 
-    public ExplosionObject explosion;
     public Vector3 Velocity
     {
         get
@@ -84,14 +83,5 @@ public class Projectile : BaseObject
             }
             audioBlastOptions[Random.Range(0, audioBlastOptions.Count)].gameObject.SetActive(true);
         }
-    }
-
-    public void HitSomething()
-    {
-        if (explosion != null)
-        {
-            explosion.Setup();
-        }
-        Die();
     }
 }
