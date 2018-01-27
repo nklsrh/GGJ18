@@ -30,4 +30,13 @@ public class SailController : BaseShipController
 
         sailTransform.localScale = new Vector3(1, 1, 0.2f + 0.65f * sailAmount);
     }
+
+	void OnTriggerEnter() {
+
+		stationIcon.SetActive (true);
+	}
+
+	void OnTriggerExit() {
+		stationIcon.SetActive (false);
+	}
 }

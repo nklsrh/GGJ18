@@ -15,6 +15,8 @@ public class RPlayerController : MonoBehaviour
 
 	public bool inStorage = false;
 
+	public GameObject stationIcon;
+
     public Vector3 Velocity
     {
         get

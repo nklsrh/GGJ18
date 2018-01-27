@@ -14,14 +14,18 @@ public class BaseShipController : MonoBehaviour
     }
     public BaseShipController mainShipController;
 
-    [NonSerialized]
+	[HideInInspector]
     public List<RPlayerController> playersControlling = new List<RPlayerController>();
 
-    public bool isActionButtonDown;
+	[HideInInspector]
+	public bool isActionButtonDown;
+
+	public GameObject stationIcon;
 
     public virtual void ActionButton()
     {
 
+		stationIcon.SetActive (false);
     }
 
     public virtual void ActionButtonDown()

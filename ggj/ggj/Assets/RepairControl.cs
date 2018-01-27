@@ -16,5 +16,18 @@ public class RepairControl : BaseShipController {
         base.ActionButtonDown();
 
         Repair();
+
+		stationIcon.SetActive (false);
     }
+
+	void OnTriggerEnter() {
+
+		stationIcon.SetActive (true);
+	}
+
+	void OnTriggerExit() {
+		stationIcon.SetActive (false);
+	}
+
+
 }

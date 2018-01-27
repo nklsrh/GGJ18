@@ -13,8 +13,6 @@ public class StorageController : BaseShipController {
 
 	public Transform[] spawnPoints;
 
-	public GameObject stationIcon;
-
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +29,7 @@ public class StorageController : BaseShipController {
 		base.ActionButton ();
 
 		Pickup();
+		stationIcon.SetActive (false);
 	}
 
 	void OnTriggerStay(Collider other)
