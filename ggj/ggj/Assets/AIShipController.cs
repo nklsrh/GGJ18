@@ -16,6 +16,9 @@ public class AIShipController : MonoBehaviour
     [Header("Loot")]
     public LootDropper loot;
 
+    [Header("Explosion")]
+    public ExplosionObject explosion;
+
     Transform nextTarget;
     Rigidbody rig;
 
@@ -31,11 +34,12 @@ public class AIShipController : MonoBehaviour
     private void OnDeath()
     {
         loot.DropLoot(transform.position);
-
-        if (onRouteComplete != null)
+        if (explosion != null)
         {
-            onRouteComplete.Invoke(this);
+            explosion.Setup();
         }
+
+        StartCoroutine(WaitThenDie());
     }
 
     internal void Setup(int health)
@@ -46,6 +50,18 @@ public class AIShipController : MonoBehaviour
     public void SetTarget(Transform end)
     {
         nextTarget = end;
+    }
+
+    IEnumerator WaitThenDie()
+    {
+        yield return new WaitForSeconds(5.0f);
+
+        if (onRouteComplete != null)
+        {
+            onRouteComplete.Invoke(this);
+        }
+
+        yield return null;
     }
 
     void Update()
