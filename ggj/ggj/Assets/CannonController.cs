@@ -91,4 +91,9 @@ public class CannonController : BaseShipController {
 		yield return new WaitForSeconds(1f);
 		//NoAmmo.SetActive (false);
 	}
+
+    protected override void Update()
+    {
+        base.Update();
+    }
 }

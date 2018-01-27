@@ -50,7 +50,7 @@ public class TurnController : BaseShipController
         Turn(stick.x);
     }
 
-    void Update()
+    protected override void Update()
     {
         rig.AddForce(transform.forward * thrust * brakingAmountRequired * Time.deltaTime);
 
@@ -61,6 +61,8 @@ public class TurnController : BaseShipController
         wheelBaseTransform.Rotate(Vector3.up * rotationAmount * wheelTurnMultiplier * Time.deltaTime, Space.Self);
 
         rotationAmount = Mathf.Lerp(rotationAmount, 0, 1 * Time.deltaTime);
+
+        base.Update();
     }
 
     public void Brake(float amount)

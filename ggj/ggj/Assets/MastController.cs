@@ -12,4 +12,8 @@ public class MastController : BaseShipController
 
         base.LeftStick(stick);
     }
+    protected override void Update()
+    {
+        base.Update();
+    }
 }

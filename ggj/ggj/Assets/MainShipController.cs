@@ -12,4 +12,9 @@ public class MainShipController : BaseShipController
     {
         health.Setup(100);
     }
+
+    protected override void Update()
+    {
+        base.Update();
+    }
 }

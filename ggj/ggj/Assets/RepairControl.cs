@@ -29,5 +29,10 @@ public class RepairControl : BaseShipController {
 		stationIcon.SetActive (false);
 	}
 
+    protected override void Update()
+    {
+        base.Update();
+    }
+
 
 }

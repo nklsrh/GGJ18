@@ -13,17 +13,6 @@ public class StorageController : BaseShipController {
 
 	public Transform[] spawnPoints;
 
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	public override void ActionButton ()
 	{
 		base.ActionButton ();
@@ -62,4 +51,9 @@ public class StorageController : BaseShipController {
 
 	}
 
+
+    protected override void Update()
+    {
+        base.Update();
+    }
 }

@@ -72,11 +72,16 @@ public class BaseShipController : MonoBehaviour
         return playersControlling != null && playersControlling.Contains(playerController);
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (isActionButtonDown)
         {
             ActionButtonDown();
+        }
+
+        if (stationIcon != null)
+        {
+            stationIcon.transform.forward = -Camera.main.transform.forward;
         }
     }
 }

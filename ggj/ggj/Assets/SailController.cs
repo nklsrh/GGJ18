@@ -24,11 +24,13 @@ public class SailController : BaseShipController
         ship.Brake(amount);
     }
 
-    void Update()
+    protected override void Update()
     {
         sailAmount = Mathf.Lerp(sailAmount, brakingAmount, 0.5f * Time.deltaTime);
 
         sailTransform.localScale = new Vector3(1, 1, 0.2f + 0.65f * sailAmount);
+
+        base.Update();
     }
 
 	void OnTriggerEnter() {
