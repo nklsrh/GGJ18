@@ -16,7 +16,6 @@ public class GameDirector : MonoBehaviour {
     public void StartGame()
     {
         playerDirector.onPlayerCreated += OnPlayerCreated;
-        playerDirector.SetSpawnPoint(ship.playerSpawnPoint);
 
         PortController[] ports = FindObjectsOfType<PortController>();
         for (int i = 0; i < ports.Length; i++)
@@ -24,8 +23,9 @@ public class GameDirector : MonoBehaviour {
             uiManager.CreatePort(ports[i]);
         }
 
-        uiScreenManager.Setup(ship);
+        playerDirector.Setup(ship.playerSpawnPoint);
 
+        uiScreenManager.Setup(ship);
 
         worldDirector.Setup();
 
@@ -47,7 +47,8 @@ public class GameDirector : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.RightAlt))
+#if UNITY_EDITOR
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             if (Input.GetKey(KeyCode.K))
             {
@@ -58,6 +59,12 @@ public class GameDirector : MonoBehaviour {
             {
                 worldDirector.AiShips[0].healthController.Damage(10);
             }
+
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                worldDirector.Ports[0].health.Damage(10);
+            }
         }
+#endif
     }
 }

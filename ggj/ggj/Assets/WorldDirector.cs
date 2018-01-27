@@ -7,6 +7,13 @@ public class WorldDirector : MonoBehaviour
     public int shipHealth = 30;
 
     List<PortController> ports = new List<PortController>();
+    public List<PortController> Ports
+    {
+        get
+        {
+            return ports;
+        }
+    }
 
     List<AIShipController> aiShips = new List<AIShipController>();
     public List<AIShipController> AiShips

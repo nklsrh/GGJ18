@@ -129,79 +129,100 @@ public class RPlayerController : MonoBehaviour
 	
 	void Update ()
     {
-        if (currentShip != null)
+        if (Input != null)
         {
-            if (!Input.Action1.IsPressed)
+            if (currentShip != null)
             {
-                RemoveControlOfCurrentShip();
+                ControlCurrentStation();
             }
             else
             {
-                transform.position = stuckTransform.TransformPoint(relativePositionToStuckTransform);
-
-                currentShip.isActionButtonDown = Input.Action1.Value > 0;
-
-                if (!Input.Action1.WasPressed && Input.Action1.IsPressed)
-                {
-                    currentShip.ActionButton();
-                }
-                if (Input.LeftStick.IsPressed)
-                {
-                    currentShip.LeftStick(Input.LeftStick.Value);
-                }
-                if (Input.RightStick.IsPressed)
-                {
-                    currentShip.RightStick(Input.RightStick.Value);
-                }
-                if (Input.RightTrigger.IsPressed)
-                {
-                    currentShip.RightTrigger(Input.RightTrigger.Value);
-                }
+                CarryItemLogic();
+                MovementLogic();
             }
-        }
-        else
-        {
-            if (currentCarryItem != null)
-            {
-                if (isCarryingItem)
-                {
-                    if (Input.Action1.IsPressed)
-                    {
-                        currentCarryItem.transform.position = animationController.rootHand.position;
-                        currentCarryItem.transform.rotation = animationController.rootHand.rotation;
-                    }
-                    else
-                    {
-						DropItem (currentCarryItem);
-                    }
-                }
-                else
-                {
-                    if (Input.Action1.IsPressed)
-                    {
-						PickupItem (currentCarryItem);
-                    }
-                }
-            }
-
-            Vector2 movementInput = Input.LeftStick.Value;
-            Vector3 movementInput3 = new Vector3(movementInput.x, 0, movementInput.y);
-
-            Vector3 finalMovement = Camera.main.transform.TransformDirection(movementInput3);
-            finalMovement = finalMovement.normalized;
-            Vector2 movementFlattened = new Vector2(finalMovement.x, finalMovement.z);
-            movementFlattened = movementFlattened.normalized;
-
-            finalMovement = new Vector3(movementFlattened.x, 0, movementFlattened.y);
-            rig.MovePosition(finalMovement * thrust * Time.deltaTime + transform.position);
-
-            // slowly look at the target
-            lookingAt = Vector3.Slerp(lookingAt, 9999 * finalMovement + rig.transform.position, lookLerp * Time.deltaTime);
-
-            rig.MoveRotation(Quaternion.LookRotation(lookingAt, Vector3.up));
         }
     }
 
+    private void MovementLogic()
+    {
+        Vector2 movementInput = Input.LeftStick.Value;
+        Vector3 movementInput3 = new Vector3(movementInput.x, 0, movementInput.y);
+
+        Vector3 finalMovement = Camera.main.transform.TransformDirection(movementInput3);
+        finalMovement = finalMovement.normalized;
+        Vector2 movementFlattened = new Vector2(finalMovement.x, finalMovement.z);
+        movementFlattened = movementFlattened.normalized;
+
+        finalMovement = new Vector3(movementFlattened.x, 0, movementFlattened.y);
+        rig.MovePosition(finalMovement * thrust * Time.deltaTime + transform.position);
+
+        // slowly look at the target
+        lookingAt = Vector3.Slerp(lookingAt, 9999 * finalMovement + rig.transform.position, lookLerp * Time.deltaTime);
+
+        rig.MoveRotation(Quaternion.LookRotation(lookingAt, Vector3.up));
+    }
+
+    private void CarryItemLogic()
+    {
+        if (currentCarryItem != null)
+        {
+            if (isCarryingItem)
+            {
+                if (Input.Action1.IsPressed)
+                {
+                    currentCarryItem.transform.position = animationController.rootHand.position;
+                    currentCarryItem.transform.rotation = animationController.rootHand.rotation;
+                }
+                else
+                {
+                    DropItem(currentCarryItem);
+                }
+            }
+            else
+            {
+                if (Input.Action1.IsPressed)
+                {
+                    PickupItem(currentCarryItem);
+                }
+            }
+        }
+    }
+
+    private void ControlCurrentStation()
+    {
+        if (!Input.Action1.IsPressed)
+        {
+            RemoveControlOfCurrentShip();
+        }
+        else
+        {
+            transform.position = stuckTransform.TransformPoint(relativePositionToStuckTransform);
+
+            InputActions();
+        }
+    }
+
+    private void InputActions()
+    {
+        currentShip.isActionButtonDown = Input.Action1.Value > 0;
+
+        if (!Input.Action1.WasPressed && Input.Action1.IsPressed)
+        {
+            currentShip.ActionButton();
+        }
+        if (Input.LeftStick.IsPressed)
+        {
+            currentShip.LeftStick(Input.LeftStick.Value);
+        }
+        if (Input.RightStick.IsPressed)
+        {
+            currentShip.RightStick(Input.RightStick.Value);
+        }
+        if (Input.RightTrigger.IsPressed)
+        {
+            currentShip.RightTrigger(Input.RightTrigger.Value);
+        }
+    }
 
     internal void CanCarryItem(CarryItem carryItem)
     {

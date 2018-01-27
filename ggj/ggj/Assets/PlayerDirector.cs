@@ -25,8 +25,12 @@ public class PlayerDirector : MonoBehaviour
 
     Transform spawnPoint;
 
-    void Start()
+    bool isActive = false;
+
+    public void Setup(Transform playerSpawnPoint)
     {
+        SetSpawnPoint(playerSpawnPoint);
+
         playerPrefab.gameObject.SetActive(false);
 
         virtualKeyboardDevice = new VirtualDevice();
@@ -35,30 +39,40 @@ public class PlayerDirector : MonoBehaviour
         InputManager.OnSetup += () => InputManager.AttachDevice(virtualKeyboardDevice);
 
         InputManager.OnDeviceDetached += OnDeviceDetached;
+
+        isActive = true;
+    }
+
+    internal void SetSpawnPoint(Transform playerSpawnPoint)
+    {
+        spawnPoint = playerSpawnPoint;
     }
 
     void Update()
     {
-        InputDevice input = InputManager.ActiveDevice;
-
-        if (virtualKeyboardDevice != null && PressedJoin(virtualKeyboardDevice))
+        if (isActive)
         {
-            input = virtualKeyboardDevice;
-        }
+            InputDevice input = InputManager.ActiveDevice;
 
-        if (PressedJoin(input))
-        {
-            if (FindPlayerFromInput(input) == null)
+            if (virtualKeyboardDevice != null && PressedJoin(virtualKeyboardDevice))
             {
-                CreatePlayer(input);
+                input = virtualKeyboardDevice;
             }
-        }
 
-        for (int i = 0; i < Players.Count; i++)
-        {
-            if (Players[i].transform.position.y < -2 || players[i].transform.position.y > 10)
+            if (PressedJoin(input))
             {
-                Players[i].Respawn(spawnPoint);
+                if (FindPlayerFromInput(input) == null)
+                {
+                    CreatePlayer(input);
+                }
+            }
+
+            for (int i = 0; i < Players.Count; i++)
+            {
+                if (Players[i].transform.position.y < -2 || players[i].transform.position.y > 10)
+                {
+                    Players[i].Respawn(spawnPoint);
+                }
             }
         }
     }
@@ -72,10 +86,6 @@ public class PlayerDirector : MonoBehaviour
     }
 
 
-    internal void SetSpawnPoint(Transform playerSpawnPoint)
-    {
-        spawnPoint = playerSpawnPoint;
-    }
 
 
     RPlayerController FindPlayerFromInput(InputDevice inputDevice)
