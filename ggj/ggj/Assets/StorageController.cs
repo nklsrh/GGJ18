@@ -13,6 +13,9 @@ public class StorageController : BaseShipController {
 
 	public Transform[] spawnPoints;
 
+	public GameObject stationIcon;
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -36,6 +39,7 @@ public class StorageController : BaseShipController {
 		if (rp != null)
 		{
 			rp.inStorage = true;
+			stationIcon.SetActive (true);
 		}
 	}
 
@@ -45,6 +49,7 @@ public class StorageController : BaseShipController {
 		if (rp != null)
 		{
 			rp.inStorage = false;
+			stationIcon.SetActive (false);
 		}
 	}
 
