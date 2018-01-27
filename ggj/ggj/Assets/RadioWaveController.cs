@@ -22,7 +22,8 @@ public class RadioWaveController : MonoBehaviour {
 			transform.position = Vector3.Lerp (gameObject.transform.position, endPos, 0.1f);
 
 			if (dist < 5) {
-				isReturning = 1;
+                //isReturning = 1;
+                transform.position = startPos;
 			}
 
 		} else {

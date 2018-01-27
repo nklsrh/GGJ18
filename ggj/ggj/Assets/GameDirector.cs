@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameDirector : MonoBehaviour {
 
     public PlayerDirector playerDirector;
+    public WorldDirector worldDirector;
 
     public UIManager uiManager;
     public UIScreenManager uiScreenManager;
@@ -25,6 +26,8 @@ public class GameDirector : MonoBehaviour {
 
         uiScreenManager.Setup(ship);
 
+
+        worldDirector.Setup();
     }
 
     private void OnPlayerCreated(RPlayerController player)

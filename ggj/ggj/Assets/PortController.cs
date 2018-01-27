@@ -13,7 +13,7 @@ public class PortController : MonoBehaviour
 
 	public PortController[] connectedPorts;
 	public GameObject radioWave;
-
+    public Transform shipDockTransform;
 
 	void Start() {
 		SetUpPorts ();
