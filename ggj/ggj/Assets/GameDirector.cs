@@ -62,7 +62,13 @@ public class GameDirector : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                worldDirector.Ports[0].health.Damage(10);
+                CannonController[] cannons = ship.GetComponentsInChildren<CannonController>();
+                foreach (CannonController c in cannons)
+                {
+                    c.loadedAmmo++;
+                    c.Fire();
+                }
+                //worldDirector.Ports[0].health.Damage(10);
             }
         }
 #endif

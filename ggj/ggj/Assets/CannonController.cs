@@ -38,7 +38,7 @@ public class CannonController : BaseShipController {
             p.transform.rotation = projectileSpawnTransform.rotation;
             p.transform.localScale = Vector3.one;
 
-            p.SetVelocity(firePower * projectileSpawnTransform.forward);
+            p.Shoot(firePower * projectileSpawnTransform.forward);
 
             loadedAmmo--;
             if (cannonFire != null)

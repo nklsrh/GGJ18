@@ -57,6 +57,12 @@ public class Projectile : BaseObject
     {
         rig.velocity = velocity;
     }
+    public virtual void Shoot(Vector3 force)
+    {
+        SetVelocity(Vector3.zero);
+        rig.AddForce(force, ForceMode.Impulse);
+    }
+
 
     public virtual void Die()
     {

@@ -8,7 +8,9 @@ public class UIHealthbar : UITrackedObject
 {
     public Image barImage;
     public Image backgroundParent;
+    public Image warningIcon;
     public float hideAfterSeconds = 9999;
+    public float maxHealthFillAmount = 0.46f;
 
     HealthController health;
     float timeSinceDamaged = 0;
@@ -39,9 +41,14 @@ public class UIHealthbar : UITrackedObject
 
     private void OnDamageChanged(float damage)
     {
-        barImage.fillAmount = health.Health / health.HealthMax;
+        float healthP = health.Health / health.HealthMax;
+        barImage.fillAmount = maxHealthFillAmount * healthP;
         timeSinceDamaged = 0;
         backgroundParent.gameObject.SetActive(true);
+        if (warningIcon)
+        {
+            warningIcon.gameObject.SetActive(healthP < 0.5f);
+        }
     }
 
     void Update()

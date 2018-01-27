@@ -5,6 +5,7 @@ using UnityEngine;
 public class WorldDirector : MonoBehaviour
 {
     public int shipHealth = 30;
+    public int portHealth = 50;
 
     List<PortController> ports = new List<PortController>();
     public List<PortController> Ports
@@ -32,6 +33,7 @@ public class WorldDirector : MonoBehaviour
         for (int i = 0; i < ports.Count; i++)
         {
             ports[i].Setup();
+            ports[i].health.Setup(portHealth);
         }
 
         AIShipController[] shipList = FindObjectsOfType<AIShipController>();
