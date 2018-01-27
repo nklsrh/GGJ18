@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BounceBackCollider : MonoBehaviour {
 
-    public float pushBackForce = 1000;
+    public float pushBackForce = 100000;
 
     void OnCollisionEnter(Collision other)
     {
