@@ -31,7 +31,7 @@ public class Boombox : MonoBehaviour
     public void PlayGameplayMusic()
     {
         StopAllMenuMusic();
-        musicGameplay[Random.Range(0, musicGameplay.Count)].Play();
+        //musicGameplay[Random.Range(0, musicGameplay.Count)].Play();
     }
 
     public void PlayGameplayAmbience()
@@ -65,6 +65,20 @@ public class Boombox : MonoBehaviour
             musicGameplayAmbience[i].Stop();
         }
     }
+
+	public void PlayTrack(int playerCount){
+
+		if (playerCount == 1) {
+			foreach (AudioSource track in musicGameplay) {
+				track.Play ();
+				track.volume = 0;
+			}
+			musicGameplay [0].Play ();
+			musicGameplay [0].volume = 1;
+		} else {
+			musicGameplay [playerCount - 1].volume = 1;
+		}
+	}
 
     public static Boombox Instance;
 }
