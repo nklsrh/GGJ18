@@ -13,6 +13,8 @@ public class RPlayerController : MonoBehaviour
 
     public float lookLerp = 10.0f;
 
+	public bool inStorage = false;
+
     public Vector3 Velocity
     {
         get
