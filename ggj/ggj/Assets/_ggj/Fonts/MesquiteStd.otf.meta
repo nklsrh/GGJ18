@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 417306cb5ed0c3c408677b4cc60d6e62
+timeCreated: 1517011736
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Mesquite Std
+  fontNames:
+  - Mesquite Std
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
