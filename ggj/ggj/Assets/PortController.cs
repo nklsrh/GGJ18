@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,16 +7,19 @@ public class PortController : MonoBehaviour
 {
     public CannonController cannon;
     public float fireRate = 1.0f;
-    public PortTower tower;
 
     float fireTime = 90.0f;
     BaseShipController detectedShip;
 
 	public PortController[] connectedPorts;
 	public GameObject radioWave;
+
+
     public Transform shipDockTransform;
 
     public HealthController health;
+
+
     public LootDropper loot;
     public Transform lootSpawnTransform;
     public ExplosionObject explosion;
@@ -40,24 +44,6 @@ public class PortController : MonoBehaviour
 	}
 
 
-    void OnTriggerEnter(Collider other)
-    {
-        BaseShipController ship = other.GetComponent<BaseShipController>();
-        if (ship != null)
-        {
-            detectedShip = ship;
-        }
-    }
-    void OnTriggerExit(Collider other)
-    {
-        BaseShipController ship = other.GetComponent<BaseShipController>();
-        if (detectedShip != null && ship != null)
-        {
-            detectedShip = null;
-        }
-    }
-
-
     void Update()
     {
         if (health.IsAlive)
@@ -78,7 +64,19 @@ public class PortController : MonoBehaviour
         }
     }
 
-	void SetUpPorts() {
+    internal void DetectShip(BaseShipController ship)
+    {
+        detectedShip = ship;
+    }
+    internal void UndetectShip(BaseShipController ship)
+    {
+        if (detectedShip == ship)
+        {
+            detectedShip = null;
+        }
+    }
+
+    void SetUpPorts() {
 
 		foreach (PortController port in connectedPorts)
 		{

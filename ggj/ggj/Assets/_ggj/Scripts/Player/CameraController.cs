@@ -70,7 +70,8 @@ public class CameraController : MonoBehaviour
         float lookLerpFinal = lookLerp;
 
         Vector3 off = offset;
-        if (ship.IsPlayerControlled() || sail.IsPlayerControlled())
+        //if (ship.IsPlayerControlled() || sail.IsPlayerControlled())
+        if (true)
         {
             off = whenDrivingShipAlignWithForward ? 
                 ship.transform.TransformPoint(offsetShipDriving) - targetPosition :
