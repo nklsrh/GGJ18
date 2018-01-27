@@ -17,11 +17,16 @@ public class CannonController : BaseShipController {
 
 	public GameObject NoAmmo;
 
+	public AudioSource cannonFire;
+
+	public GameObject aimAid;
+
     void Start()
     {
         poolManager = new ProjectilePoolManager(5);
         poolManager.Setup();
     }
+		
 
     public void Fire()
     {
@@ -35,6 +40,7 @@ public class CannonController : BaseShipController {
 			p.SetVelocity (firePower * projectileSpawnTransform.forward);
 
 			loadedAmmo--;
+			cannonFire.Play ();
 		} else {
 			//StartCoroutine(OutOfAmmo());
 		}
@@ -69,12 +75,23 @@ public class CannonController : BaseShipController {
 						player.DropItem (item);
 						Destroy (item.gameObject);
 						loadedAmmo++;
+
 					}
 				}
 			}	
 		}
 	}
-
+//	void OnTriggerStay(Collider other)
+//	{
+//		RPlayerController player = other.GetComponent<RPlayerController>();
+//		if (player != null) {
+//			if (loadedAmmo > 0) {
+//				aimAid.SetActive (true);
+//			} else {
+//				aimAid.SetActive (false);
+//
+//		}
+//	}
 
 	IEnumerator OutOfAmmo () {
 		//NoAmmo.SetActive (true);
@@ -86,5 +103,11 @@ public class CannonController : BaseShipController {
     protected override void Update()
     {
         base.Update();
+
+		if (loadedAmmo > 0) {
+			aimAid.SetActive (true);
+		} else {
+			aimAid.SetActive (false);
+		}
     }
 }
