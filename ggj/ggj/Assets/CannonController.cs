@@ -45,7 +45,6 @@ public class CannonController : BaseShipController {
         base.ActionButton();
 
         Fire();
-		stationIcon.SetActive (false);
     }
 
 	//public void OutOfAmmo () {

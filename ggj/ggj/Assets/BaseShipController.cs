@@ -24,7 +24,6 @@ public class BaseShipController : MonoBehaviour
 
     public virtual void ActionButton()
     {
-
 		stationIcon.SetActive (false);
     }
 
@@ -78,6 +77,7 @@ public class BaseShipController : MonoBehaviour
         {
             ActionButtonDown();
         }
+        isActionButtonDown = false;
 
         if (stationIcon != null)
         {

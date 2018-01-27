@@ -37,7 +37,7 @@ public class RPlayerController : MonoBehaviour
         }
     }
 
-    BaseShipController ship;
+    BaseShipController currentShip;
 
     Transform stuckTransform;
     Vector3 relativePositionToStuckTransform;
@@ -104,14 +104,14 @@ public class RPlayerController : MonoBehaviour
 
     }
 
-    internal void GiveControl(BaseShipController ship, ShipTrigger trigger)
+    internal void GiveControl(BaseShipController ship, ShipTrigger trigger, bool isPressAllowed)
     {
-		if (Input.Action1.IsPressed)
+        if ((isPressAllowed && Input.Action1.IsPressed) || (!isPressAllowed && Input.Action1.Value > 0))
         {
-			if (!ship.IsControlledByPlayer (this)) {
-				//Debug.Log ("TAKE CONTROL OF " + ship.gameObject.name);
-				ship.TakeControl (this);
-				this.ship = ship;
+			if (!ship.IsControlledByPlayer (this))
+            {
+                ship.TakeControl (this);
+				this.currentShip = ship;
 				stuckTransform = trigger.transform;
 				relativePositionToStuckTransform = trigger.transform.InverseTransformPoint (transform.position);
 			}
@@ -120,9 +120,8 @@ public class RPlayerController : MonoBehaviour
 
     internal void RemoveControlOfCurrentShip(BaseShipController ship = null)
     {
-        //Debug.Log("REMOVE CONTROL");
-        this.ship.RemoveControl(this);
-        this.ship = null;
+        this.currentShip.RemoveControl(this);
+        this.currentShip = null;
     }
 
 
@@ -130,7 +129,7 @@ public class RPlayerController : MonoBehaviour
 	
 	void Update ()
     {
-        if (ship != null)
+        if (currentShip != null)
         {
             if (!Input.Action1.IsPressed)
             {
@@ -140,23 +139,23 @@ public class RPlayerController : MonoBehaviour
             {
                 transform.position = stuckTransform.TransformPoint(relativePositionToStuckTransform);
 
-                ship.isActionButtonDown = Input.Action1.Value > 0;
+                currentShip.isActionButtonDown = Input.Action1.Value > 0;
 
-                if (Input.Action1.WasPressed)
+                if (!Input.Action1.WasPressed && Input.Action1.IsPressed)
                 {
-                    ship.ActionButton();
+                    currentShip.ActionButton();
                 }
                 if (Input.LeftStick.IsPressed)
                 {
-                    ship.LeftStick(Input.LeftStick.Value);
+                    currentShip.LeftStick(Input.LeftStick.Value);
                 }
                 if (Input.RightStick.IsPressed)
                 {
-                    ship.RightStick(Input.RightStick.Value);
+                    currentShip.RightStick(Input.RightStick.Value);
                 }
                 if (Input.RightTrigger.IsPressed)
                 {
-                    ship.RightTrigger(Input.RightTrigger.Value);
+                    currentShip.RightTrigger(Input.RightTrigger.Value);
                 }
             }
         }
