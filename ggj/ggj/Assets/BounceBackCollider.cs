@@ -6,6 +6,7 @@ public class BounceBackCollider : MonoBehaviour {
 
     public float pushBackForce = 100000;
     public float damageToShip = 5f;
+    public float damageToThisObject = 5f;
 
     void OnCollisionEnter(Collision other)
     {
@@ -16,6 +17,12 @@ public class BounceBackCollider : MonoBehaviour {
 
             ship.PushBack(-other.relativeVelocity * pushBackForce);
             ship.MainShip.health.Damage(damageToShip);
+
+            HealthController health = GetComponent<HealthController>();
+            if (health != null)
+            { 
+                health.Damage(damageToThisObject);
+            }
         }
     }
 }

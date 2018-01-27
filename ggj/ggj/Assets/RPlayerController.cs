@@ -88,7 +88,10 @@ public class RPlayerController : MonoBehaviour
         transform.position = spawnPoint.position;
         transform.rotation = Quaternion.identity;
 
-        rig.velocity = Vector3.zero;
+        if (rig != null)
+        {
+            rig.velocity = Vector3.zero;
+        }
     }
 
     private void OnCannotPickUpFunction(RPlayerController arg1, CarryItem arg2)

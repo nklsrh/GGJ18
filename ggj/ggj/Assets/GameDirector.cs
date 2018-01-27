@@ -28,6 +28,11 @@ public class GameDirector : MonoBehaviour {
 
 
         worldDirector.Setup();
+
+        for (int i = 0; i < worldDirector.AiShips.Count; i++)
+        {
+            uiManager.CreateShip(worldDirector.AiShips[i].transform);
+        }
     }
 
     private void OnPlayerCreated(RPlayerController player)

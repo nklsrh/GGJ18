@@ -56,7 +56,7 @@ public class PlayerDirector : MonoBehaviour
 
         for (int i = 0; i < Players.Count; i++)
         {
-            if (Players[i].transform.position.y < -2)
+            if (Players[i].transform.position.y < -2 || players[i].transform.position.y > 10)
             {
                 Players[i].Respawn(spawnPoint);
             }
