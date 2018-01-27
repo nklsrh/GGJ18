@@ -51,11 +51,11 @@ public class PortController : MonoBehaviour
 
 		foreach (PortController port in connectedPorts)
 		{
-			Vector3 startPos = gameObject.transform.position + new Vector3 (0, 2, 0);
+            Vector3 startPos = shipDockTransform.position;
 
 			GameObject wave = Instantiate (radioWave, startPos, Quaternion.identity);
 
-			wave.GetComponent<RadioWaveController> ().endPos = port.transform.position + new Vector3 (0, 2, 0);
+			wave.GetComponent<RadioWaveController> ().endPos = port.transform.position;
 			wave.GetComponent<RadioWaveController> ().startPos = startPos;
 		}
 	}

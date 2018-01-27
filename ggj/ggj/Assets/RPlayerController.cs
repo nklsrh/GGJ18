@@ -129,7 +129,7 @@ public class RPlayerController : MonoBehaviour
     {
         if (ship != null)
         {
-            if (Input.Action4.IsPressed)
+            if (!Input.Action1.IsPressed)
             {
                 RemoveControlOfCurrentShip();
             }

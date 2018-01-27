@@ -33,7 +33,11 @@ public class GameDirector : MonoBehaviour {
     private void OnPlayerCreated(RPlayerController player)
     {
         uiManager.CreatePlayer(player);
-		boomBox.PlayTrack (playerDirector.Players.Count);
+
+        if (boomBox)
+        {
+            boomBox.PlayTrack(playerDirector.Players.Count);
+        }
     }
 
     void Update()

@@ -11,6 +11,12 @@ public class MainShipController : BaseShipController
     void Start()
     {
         health.Setup(100);
+        health.onDeath += OnDeath;
+    }
+
+    private void OnDeath()
+    {
+        Application.LoadLevel(Application.loadedLevel);
     }
 
     protected override void Update()

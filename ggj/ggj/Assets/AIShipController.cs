@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class AIShipController : MonoBehaviour
 {
+    public HealthController healthController;
+
     Transform nextTarget;
     Rigidbody rig;
 
@@ -15,6 +18,21 @@ public class AIShipController : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody>();
+
+        healthController.onDeath += OnDeath;
+    }
+
+    private void OnDeath()
+    {
+        if (onRouteComplete != null)
+        {
+            onRouteComplete.Invoke(this);
+        }
+    }
+
+    internal void Setup(int health)
+    {
+        healthController.Setup(health);
     }
 
     public void SetTarget(Transform end)
