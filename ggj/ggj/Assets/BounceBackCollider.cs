@@ -5,6 +5,7 @@ using UnityEngine;
 public class BounceBackCollider : MonoBehaviour {
 
     public float pushBackForce = 100000;
+    public float damageToShip = 5f;
 
     void OnCollisionEnter(Collision other)
     {
@@ -14,6 +15,7 @@ public class BounceBackCollider : MonoBehaviour {
             Debug.Log("DASHED SHIP");
 
             ship.PushBack(-other.relativeVelocity * pushBackForce);
+            ship.MainShip.health.Damage(damageToShip);
         }
     }
 }

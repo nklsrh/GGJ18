@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class BaseShipController : MonoBehaviour
 {
+    public MainShipController MainShip
+    {
+        get
+        {
+            return mainShipController as MainShipController;
+        }
+    }
+    public BaseShipController mainShipController;
+
     [NonSerialized]
     public List<RPlayerController> playersControlling = new List<RPlayerController>();
 

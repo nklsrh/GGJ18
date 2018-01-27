@@ -10,7 +10,7 @@ public class GameDirector : MonoBehaviour {
     public UIManager uiManager;
     public UIScreenManager uiScreenManager;
 
-    public ShipController ship;
+    public MainShipController ship;
 
     public void StartGame()
     {

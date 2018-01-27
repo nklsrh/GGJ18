@@ -7,9 +7,9 @@ public class UIScreenManager : MonoBehaviour
     public UICompass compass;
     public UIHealthbar health;
 
-    ShipController myShip;
+    MainShipController myShip;
     
-    public void Setup(ShipController ship)
+    public void Setup(MainShipController ship)
     {
         myShip = ship;
 

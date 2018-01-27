@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipController : BaseShipController
+public class MainShipController : BaseShipController
 {
     public HealthController health;
     public Transform playerSpawnPoint;
@@ -12,5 +12,4 @@ public class ShipController : BaseShipController
     {
         health.Setup(100);
     }
-    
 }
