@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     public UIHealthbar healthbarTemplate;
     public UIPort portTemplate;
+    public UITrackedObject shipTemplate;
 
     public void CreatePlayer(RPlayerController player)
     {
@@ -17,6 +18,12 @@ public class UIManager : MonoBehaviour
     {
         UIPort newPort = InstantiateTransform(portTemplate.transform, portTemplate.transform.parent).GetComponent<UIPort>();
         newPort.CreateForPort(port);
+    }
+
+    public void CreateShip(Transform ship)
+    {
+        UITrackedObject newPort = InstantiateTransform(shipTemplate.transform, shipTemplate.transform.parent).GetComponent<UITrackedObject>();
+        newPort.Track(ship);
     }
 
     Transform InstantiateTransform (Transform prefab, Transform parent)

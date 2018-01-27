@@ -23,6 +23,15 @@ public class SceneSetup : MonoBehaviour
             Application.LoadLevelAdditive("WorldScene");
         }
 
+        StartCoroutine(WaitThenStartGame());
+    }
+
+
+    IEnumerator WaitThenStartGame()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+
         gameDirector.StartGame();
     }
 

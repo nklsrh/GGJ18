@@ -9,48 +9,25 @@ public class StorageController : BaseShipController {
 
 	public GameObject storageItem;
 
-	RPlayerController rp;
-
 	public Transform[] spawnPoints;
+    public int itemsToSpawn = 5;
+    
 
-	public override void ActionButton ()
-	{
-		base.ActionButton ();
+    internal override void RemoveControl(RPlayerController playerController)
+    {
+        Pickup();
 
-		Pickup();
-		stationIcon.SetActive (false);
-	}
+        base.RemoveControl(playerController);
+    }
 
-	void OnTriggerStay(Collider other)
-	{
-		rp = other.GetComponent<RPlayerController>();
-		if (rp != null)
-		{
-			rp.inStorage = true;
-			stationIcon.SetActive (true);
-		}
-	}
 
-	void OnTriggerExit(Collider other)
-	{
-		rp = other.GetComponent<RPlayerController>();
-		if (rp != null)
-		{
-			rp.inStorage = false;
-			stationIcon.SetActive (false);
-		}
-	}
-
-	void Pickup() {
-
-		Debug.Log("Pick up");
-		for (int i = 0; i < 5; i++) {
-
+    void Pickup()
+    {
+		for (int i = 0; i < itemsToSpawn; i++)
+        {
 			GameObject item = Instantiate (storageItem, spawnPoints[i].position, Quaternion.identity);
 		}
-
 	}
-
 
     protected override void Update()
     {

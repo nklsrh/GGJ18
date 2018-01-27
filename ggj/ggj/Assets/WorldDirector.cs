@@ -9,6 +9,13 @@ public class WorldDirector : MonoBehaviour
     List<PortController> ports = new List<PortController>();
 
     List<AIShipController> aiShips = new List<AIShipController>();
+    public List<AIShipController> AiShips
+    {
+        get
+        {
+            return aiShips;
+        }
+    }
 
     public void Setup()
     {
