@@ -22,6 +22,10 @@ public class WorldDirector : MonoBehaviour
         PortController[] portList = FindObjectsOfType<PortController>();
 
         ports.AddRange(portList);
+        for (int i = 0; i < ports.Count; i++)
+        {
+            ports[i].Setup();
+        }
 
         AIShipController[] shipList = FindObjectsOfType<AIShipController>();
 

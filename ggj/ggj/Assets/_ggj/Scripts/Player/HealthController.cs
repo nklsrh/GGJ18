@@ -8,11 +8,8 @@ public class HealthController : MonoBehaviour
     public System.Action<float> onDamage;
     public System.Action<float> onRegen;
     public System.Action onDeath;
-    
-    public float Health
-    {
-        get; private set;
-    }
+
+    public float Health;
 
     public float HealthMax
     {

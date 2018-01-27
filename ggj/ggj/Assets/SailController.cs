@@ -32,13 +32,5 @@ public class SailController : BaseShipController
 
         base.Update();
     }
-
-	void OnTriggerEnter() {
-
-		stationIcon.SetActive (true);
-	}
-
-	void OnTriggerExit() {
-		stationIcon.SetActive (false);
-	}
+    
 }

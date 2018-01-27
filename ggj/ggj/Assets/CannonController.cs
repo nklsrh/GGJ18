@@ -57,7 +57,6 @@ public class CannonController : BaseShipController {
 		RPlayerController player = other.GetComponent<RPlayerController>();
 		if (player != null)
         {
-			stationIcon.SetActive (true);
             //Debug.Log("player");
             if (player.IsCarryingItem)
             {
@@ -76,13 +75,6 @@ public class CannonController : BaseShipController {
 		}
 	}
 
-	void OnTriggerExit(Collider other) {
-		RPlayerController player = other.GetComponent<RPlayerController>();
-		if (player != null) {
-			stationIcon.SetActive (false);
-		}
-
-	}
 
 	IEnumerator OutOfAmmo () {
 		//NoAmmo.SetActive (true);

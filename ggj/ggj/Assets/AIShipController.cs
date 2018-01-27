@@ -6,14 +6,20 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class AIShipController : MonoBehaviour
 {
+    [Header("Speed")]
+    public float thrust = 10000;
+    public float maxVelocity = 100;
+
+    [Header("Health")]
     public HealthController healthController;
+
+    [Header("Loot")]
+    public LootDropper loot;
 
     Transform nextTarget;
     Rigidbody rig;
 
-    public float thrust = 10000;
     public System.Action<AIShipController> onRouteComplete;
-    public float maxVelocity = 100;
 
     void Start()
     {
@@ -24,6 +30,8 @@ public class AIShipController : MonoBehaviour
 
     private void OnDeath()
     {
+        loot.DropLoot(transform.position);
+
         if (onRouteComplete != null)
         {
             onRouteComplete.Invoke(this);

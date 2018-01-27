@@ -8,6 +8,8 @@ public class MainShipController : BaseShipController
     public HealthController health;
     public Transform playerSpawnPoint;
 
+    public int lootCollected = 0;
+
     void Start()
     {
         health.Setup(100);
@@ -22,5 +24,12 @@ public class MainShipController : BaseShipController
     protected override void Update()
     {
         base.Update();
+    }
+
+    internal void CollectLoot(LootItem lootItem)
+    {
+        lootCollected += lootItem.lootAmount;
+
+        Destroy(lootItem.gameObject);
     }
 }

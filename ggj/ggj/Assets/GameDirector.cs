@@ -47,9 +47,17 @@ public class GameDirector : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.K))
+        if (Input.GetKey(KeyCode.RightAlt))
         {
-            ship.health.Damage(1.0f);
+            if (Input.GetKey(KeyCode.K))
+            {
+                ship.health.Damage(1.0f);
+            }
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                worldDirector.AiShips[0].healthController.Damage(10);
+            }
         }
     }
 }

@@ -15,9 +15,9 @@ public class PortController : MonoBehaviour
 	public GameObject radioWave;
     public Transform shipDockTransform;
 
-	void Start() {
+	public void Setup()
+    {
 		SetUpPorts ();
-
 	}
 
 
