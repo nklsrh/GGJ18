@@ -17,7 +17,14 @@ public class BaseShipController : MonoBehaviour
     [NonSerialized]
     public List<RPlayerController> playersControlling = new List<RPlayerController>();
 
+    public bool isActionButtonDown;
+
     public virtual void ActionButton()
+    {
+
+    }
+
+    public virtual void ActionButtonDown()
     {
 
     }
@@ -59,5 +66,13 @@ public class BaseShipController : MonoBehaviour
     internal bool IsControlledByPlayer(RPlayerController playerController)
     {
         return playersControlling != null && playersControlling.Contains(playerController);
+    }
+
+    void Update()
+    {
+        if (isActionButtonDown)
+        {
+            ActionButtonDown();
+        }
     }
 }

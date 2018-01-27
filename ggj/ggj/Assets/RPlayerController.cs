@@ -127,6 +127,8 @@ public class RPlayerController : MonoBehaviour
             {
                 transform.position = stuckTransform.TransformPoint(relativePositionToStuckTransform);
 
+                ship.isActionButtonDown = Input.Action1.Value > 0;
+
                 if (Input.Action1.WasPressed)
                 {
                     ship.ActionButton();

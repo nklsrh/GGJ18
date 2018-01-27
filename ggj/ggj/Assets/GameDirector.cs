@@ -15,7 +15,6 @@ public class GameDirector : MonoBehaviour {
     public void StartGame()
     {
         playerDirector.onPlayerCreated += OnPlayerCreated;
-
         playerDirector.SetSpawnPoint(ship.playerSpawnPoint);
 
         PortController[] ports = FindObjectsOfType<PortController>();
