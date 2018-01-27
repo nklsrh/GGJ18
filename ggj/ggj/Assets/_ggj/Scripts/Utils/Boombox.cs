@@ -9,6 +9,8 @@ public class Boombox : MonoBehaviour
     [SerializeField]
     List<AudioSource> musicGameplay;
 
+	public AudioSource battleMusic;
+
     [SerializeField]
     List<AudioSource> musicGameplayAmbience;
 
