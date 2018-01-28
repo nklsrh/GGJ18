@@ -134,6 +134,8 @@ public class PlayerDirector : MonoBehaviour
                 onPlayerCreated.Invoke(player);
             }
 
+            player.Setup(players.Count - 1);
+
             return player;
         }
 

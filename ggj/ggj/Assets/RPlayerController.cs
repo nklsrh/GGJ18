@@ -81,6 +81,12 @@ public class RPlayerController : MonoBehaviour
         onCannotPickUp += OnCannotPickUpFunction;
 
         health.Setup(100);
+
+    }
+
+    public void Setup(int index)
+    {
+        animationController.Setup(index);
     }
 
     internal void Respawn(Transform spawnPoint)

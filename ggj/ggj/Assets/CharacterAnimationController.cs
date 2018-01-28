@@ -12,9 +12,18 @@ public class CharacterAnimationController : MonoBehaviour
     public Transform transformBody;
     public Transform transformHand;
 
-    void Start ()
+    public Transform[] hatOptions;
+
+    public void Setup(int hatIndex)
     {
-        SetTransformToRoot(transformHead, rootHead);
+        Transform t = hatOptions[hatIndex];
+        foreach (Transform tt in hatOptions)
+        {
+            tt.gameObject.SetActive(false);
+        }
+        t.gameObject.SetActive(true);
+
+        SetTransformToRoot(t, rootHead);
         SetTransformToRoot(transformBody, rootBody);
         SetTransformToRoot(transformHand, rootHand);
     }

@@ -1,0 +1,174 @@
+fileFormatVersion: 2
+guid: 1882cefd61a6c9d42975efbfb0b10ed9
+timeCreated: 1517108887
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Cannon_FL
+    100002: Cannon_FR
+    100004: Cannon_RL
+    100006: Cannon_RR
+    100008: ColliderFL
+    100010: ColliderForward
+    100012: ColliderFR
+    100014: ColliderLeft
+    100016: ColliderRear
+    100018: ColliderRight
+    100020: Flag
+    100022: Ground.Collider
+    100024: Hull
+    100026: Mast
+    100028: Sail
+    100030: Sail.001
+    100032: Sail.002
+    100034: //RootNode
+    100036: Wheel
+    100038: WheelBase
+    400000: Cannon_FL
+    400002: Cannon_FR
+    400004: Cannon_RL
+    400006: Cannon_RR
+    400008: ColliderFL
+    400010: ColliderForward
+    400012: ColliderFR
+    400014: ColliderLeft
+    400016: ColliderRear
+    400018: ColliderRight
+    400020: Flag
+    400022: Ground.Collider
+    400024: Hull
+    400026: Mast
+    400028: Sail
+    400030: Sail.001
+    400032: Sail.002
+    400034: //RootNode
+    400036: Wheel
+    400038: WheelBase
+    2300000: Cannon_FL
+    2300002: Cannon_FR
+    2300004: Cannon_RL
+    2300006: Cannon_RR
+    2300008: ColliderFL
+    2300010: ColliderForward
+    2300012: ColliderFR
+    2300014: ColliderLeft
+    2300016: ColliderRear
+    2300018: ColliderRight
+    2300020: Flag
+    2300022: Ground.Collider
+    2300024: Hull
+    2300026: Mast
+    2300028: Sail
+    2300030: Sail.001
+    2300032: Sail.002
+    2300034: Wheel
+    2300036: WheelBase
+    3300000: Cannon_FL
+    3300002: Cannon_FR
+    3300004: Cannon_RL
+    3300006: Cannon_RR
+    3300008: ColliderFL
+    3300010: ColliderForward
+    3300012: ColliderFR
+    3300014: ColliderLeft
+    3300016: ColliderRear
+    3300018: ColliderRight
+    3300020: Flag
+    3300022: Ground.Collider
+    3300024: Hull
+    3300026: Mast
+    3300028: Sail
+    3300030: Sail.001
+    3300032: Sail.002
+    3300034: Wheel
+    3300036: WheelBase
+    4300000: ColliderForward
+    4300002: ColliderFL
+    4300004: ColliderFR
+    4300006: ColliderRear
+    4300008: ColliderRight
+    4300010: ColliderLeft
+    4300012: Ground.Collider
+    4300014: Sail.002
+    4300016: Sail.001
+    4300018: WheelBase
+    4300020: Cannon_FL
+    4300022: Flag
+    4300024: Wheel
+    4300026: Hull
+    4300028: Sail
+    4300030: Cannon_RR
+    4300032: Mast
+    4300034: Cannon_RL
+    4300036: Cannon_FR
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
