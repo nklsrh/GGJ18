@@ -75,8 +75,8 @@ public class PortController : MonoBehaviour
     {
         if (detectedShip == ship)
         {
-            detectedShip = null;
             detectedShip.MainShip.StopLookingAtThing(this.transform);
+            detectedShip = null;
         }
     }
 
