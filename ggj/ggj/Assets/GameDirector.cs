@@ -16,6 +16,8 @@ public class GameDirector : MonoBehaviour {
 
 	public int portsAlive = 7;
 
+    public System.Action<bool> onGameEnd;
+
     public void StartGame()
     {
         playerDirector.onPlayerCreated += OnPlayerCreated;
@@ -40,6 +42,15 @@ public class GameDirector : MonoBehaviour {
 
         ship.onInterestingThingFound += OnInterestingThingFound;
         ship.onInterestingThingLost += OnInterestingThingLost;
+
+        for (int i = 0; i < 1000; i++)
+        {
+            cameraController.FixedUpdate();
+        }
+
+        cameraController.transform.position += Vector3.up * 1200;
+
+        ship.health.onDeath += OnGameLost;
     }
 
     private void OnInterestingThingFound(Transform thing, float time)
@@ -61,11 +72,26 @@ public class GameDirector : MonoBehaviour {
 
 		portsAlive -=1;
 
-		if (portsAlive < 1) {
+		if (portsAlive < 1)
+        {
+            if (onGameEnd != null)
+            {
+                onGameEnd.Invoke(true);
+            }
 
+            uiScreenManager.Finish(true);
 			//Game End;
 		}
-	}
+    }
+
+    private void OnGameLost()
+    {
+        if (onGameEnd != null)
+        {
+            onGameEnd.Invoke(false);
+        }
+    }
+
     private void OnPlayerCreated(RPlayerController player)
     {
         uiManager.CreatePlayer(player);

@@ -49,6 +49,11 @@ public class CameraController : MonoBehaviour
 
     Vector3 finalLookAtPosition;
 
+    void Start()
+    {
+        finalLookAtPosition = transform.position + transform.forward;
+    }
+
     public void LookAtThingOfInterest(Transform thing, float howLong)
     {
         // DISABLE FOR GAEMJAM
@@ -66,7 +71,7 @@ public class CameraController : MonoBehaviour
         //}
     }
 
-    void FixedUpdate()
+    public void FixedUpdate()
     {
         transform.position = movementPosition;
 

@@ -13,6 +13,8 @@ public class MainShipController : BaseShipController
     public System.Action<Transform, float> onInterestingThingFound;
     public System.Action<Transform> onInterestingThingLost;
 
+    public ExplosionObject explosion;
+
     void Start()
     {
         health.Setup(100);
@@ -21,7 +23,10 @@ public class MainShipController : BaseShipController
 
     private void OnDeath()
     {
-        Application.LoadLevel(Application.loadedLevel);
+        if (explosion !=null)
+        {
+            explosion.Setup();
+        }
     }
 
     protected override void Update()
