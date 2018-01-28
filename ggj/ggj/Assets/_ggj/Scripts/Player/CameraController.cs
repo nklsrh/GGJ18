@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
 
     public bool isLookingAtTarget = false;
     public bool whenDrivingShipAlignWithForward = true;
+    public bool whenNOTDrivingShipAlignWithForward = false;
 
     public float FOVDriving = 25;
     public float FOVRunning = 35;
@@ -69,9 +70,11 @@ public class CameraController : MonoBehaviour
         Vector3 lookatOffset = Vector3.zero;
         float lookLerpFinal = lookLerp;
 
-        Vector3 off = offset;
-        //if (ship.IsPlayerControlled() || sail.IsPlayerControlled())
-        if (true)
+        Vector3 off = whenNOTDrivingShipAlignWithForward ?
+            ship.transform.TransformPoint(offset) - targetPosition :
+            offset;
+
+        if (ship.IsPlayerControlled() || sail.IsPlayerControlled())
         {
             off = whenDrivingShipAlignWithForward ? 
                 ship.transform.TransformPoint(offsetShipDriving) - targetPosition :
