@@ -68,12 +68,12 @@ public class SceneSetup : MonoBehaviour
         {
             InputDevice input = InputManager.ActiveDevice;
 
-            if (virtualKeyboardDevice != null)
-            {
-                input = virtualKeyboardDevice;
-            }
+            //if (virtualKeyboardDevice != null)
+            //{
+            //    input = virtualKeyboardDevice;
+            //}
 
-            if (input.Action1.IsPressed)
+            if (input.Action1.IsPressed || virtualKeyboardDevice.Action1.IsPressed)
             {
                 gameDirector.StartGame();
                 waitPeriod = 0;

@@ -59,9 +59,12 @@ public class WorldDirector : MonoBehaviour
         {
             int randomPortIndex = Random.Range(0, port.connectedPorts.Length);
             PortController newPort = port.connectedPorts[randomPortIndex];
-            ship.SetTarget(newPort.transform);
-            ship.transform.position = port.transform.position + (newPort.transform.position - port.transform.position) * 0.1f;
-            ship.healthController.Setup(shipHealth);
+            if (newPort != null)
+            {
+                ship.SetTarget(newPort.transform);
+                ship.transform.position = port.transform.position + (newPort.transform.position - port.transform.position) * 0.1f;
+                ship.healthController.Setup(shipHealth);
+            }
         }
         else
         {

@@ -25,6 +25,8 @@ public class PortController : MonoBehaviour
     public Transform lootSpawnTransform;
     public ExplosionObject explosion;
 
+    public AudioSource winChime;
+
     void Start()
     {
         health.onDeath += OnDeath;
@@ -32,6 +34,11 @@ public class PortController : MonoBehaviour
 
     private void OnDeath()
     {
+        if (winChime != null)
+        {
+            winChime.Play();
+        }
+
         loot.DropLoot(lootSpawnTransform.position);
         if (explosion != null)
         {

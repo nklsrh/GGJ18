@@ -19,6 +19,8 @@ public class AIShipController : MonoBehaviour
     [Header("Explosion")]
     public ExplosionObject explosion;
 
+    public AudioSource winChime;
+
     Transform nextTarget;
     Rigidbody rig;
 
@@ -64,7 +66,12 @@ public class AIShipController : MonoBehaviour
 
     IEnumerator WaitThenDie()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(8.0f);
+
+        if (winChime != null)
+        {
+            winChime.Play();
+        }
 
         if (onRouteComplete != null)
         {
@@ -147,8 +154,8 @@ public class AIShipController : MonoBehaviour
     {
         if (detectedShip == ship)
         {
-            detectedShip = null;
             detectedShip.MainShip.StopLookingAtThing(this.transform);
+            detectedShip = null;
         }
     }
 
