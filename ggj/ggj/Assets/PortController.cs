@@ -69,12 +69,14 @@ public class PortController : MonoBehaviour
     internal void DetectShip(BaseShipController ship)
     {
         detectedShip = ship;
+        detectedShip.MainShip.LookAtInterestingThing(this.transform, 6);
     }
     internal void UndetectShip(BaseShipController ship)
     {
         if (detectedShip == ship)
         {
             detectedShip = null;
+            detectedShip.MainShip.StopLookingAtThing(this.transform);
         }
     }
 

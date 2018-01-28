@@ -68,7 +68,16 @@ public class Boombox : MonoBehaviour
         }
     }
 
-	public void PlayTrack(int playerCount){
+    internal void PlayBattleMusic()
+    {
+        battleMusic.volume = 1.0f;
+        foreach (AudioSource track in musicGameplay)
+        {
+            track.volume = 0;
+        }
+    }
+
+    public void PlayTrack(int playerCount){
 
 		if (playerCount == 1) {
 			foreach (AudioSource track in musicGameplay) {
@@ -77,7 +86,8 @@ public class Boombox : MonoBehaviour
 			}
 			musicGameplay [0].Play ();
 			musicGameplay [0].volume = 1;
-		} else {
+            battleMusic.volume = 0;
+        } else {
 			musicGameplay [playerCount - 1].volume = 1;
 		}
 	}

@@ -7,7 +7,8 @@ public class GameDirector : MonoBehaviour {
 
     public PlayerDirector playerDirector;
     public WorldDirector worldDirector;
-	public Boombox boomBox;
+    public CameraController cameraController;
+    public Boombox boomBox;
     public UIManager uiManager;
     public UIScreenManager uiScreenManager;
 
@@ -36,9 +37,27 @@ public class GameDirector : MonoBehaviour {
         {
             uiManager.CreateShip(worldDirector.AiShips[i].transform);
         }
+
+        ship.onInterestingThingFound += OnInterestingThingFound;
+        ship.onInterestingThingLost += OnInterestingThingLost;
     }
 
-	void OnPortDead () {
+    private void OnInterestingThingFound(Transform thing, float time)
+    {
+        cameraController.LookAtThingOfInterest(thing, time);
+        //TODO interesting music
+
+        boomBox.PlayBattleMusic();
+    }
+    private void OnInterestingThingLost(Transform thing)
+    {
+        cameraController.StopLookAtThing(thing);
+        //TODO interesting music
+
+        boomBox.PlayTrack(playerDirector.Players.Count);
+    }
+
+    void OnPortDead () {
 
 		portsAlive -=1;
 

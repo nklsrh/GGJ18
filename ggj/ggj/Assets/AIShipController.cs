@@ -31,6 +31,8 @@ public class AIShipController : MonoBehaviour
 
 	CannonController[] cannons = new CannonController[2];
 
+    BaseShipController detectedShip;
+
     void Start()
     {
         rig = GetComponent<Rigidbody>();
@@ -136,15 +138,30 @@ public class AIShipController : MonoBehaviour
 		}
 	}
 
-//	void Fire() {
-//		
-//		Projectile p = poolManager.AddProjectile(templateProjectile);
-//
-//		p.transform.position = projectileSpawnTransform.position;
-//		p.transform.rotation = projectileSpawnTransform.rotation;
-//		p.transform.localScale = Vector3.one;
-//
-//		p.Shoot(firePower * projectileSpawnTransform.forward);
-//	}
+    internal void DetectShip(BaseShipController ship)
+    {
+        detectedShip = ship;
+        detectedShip.MainShip.LookAtInterestingThing(this.transform, 6);
+    }
+    internal void UndetectShip(BaseShipController ship)
+    {
+        if (detectedShip == ship)
+        {
+            detectedShip = null;
+            detectedShip.MainShip.StopLookingAtThing(this.transform);
+        }
+    }
+
+
+    //	void Fire() {
+    //		
+    //		Projectile p = poolManager.AddProjectile(templateProjectile);
+    //
+    //		p.transform.position = projectileSpawnTransform.position;
+    //		p.transform.rotation = projectileSpawnTransform.rotation;
+    //		p.transform.localScale = Vector3.one;
+    //
+    //		p.Shoot(firePower * projectileSpawnTransform.forward);
+    //	}
 
 }

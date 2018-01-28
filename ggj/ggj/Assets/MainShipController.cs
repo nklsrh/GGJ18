@@ -10,6 +10,9 @@ public class MainShipController : BaseShipController
 
     public int lootCollected = 0;
 
+    public System.Action<Transform, float> onInterestingThingFound;
+    public System.Action<Transform> onInterestingThingLost;
+
     void Start()
     {
         health.Setup(100);
@@ -31,5 +34,20 @@ public class MainShipController : BaseShipController
         lootCollected += lootItem.lootAmount;
 
         Destroy(lootItem.gameObject);
+    }
+
+    public void LookAtInterestingThing(Transform thing, float time)
+    {
+        if (onInterestingThingFound != null)
+        {
+            onInterestingThingFound.Invoke(thing, time);
+        }
+    }
+    public void StopLookingAtThing(Transform thing)
+    {
+        if (onInterestingThingLost != null)
+        {
+            onInterestingThingLost.Invoke(thing);
+        }
     }
 }
