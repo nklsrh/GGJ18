@@ -13,6 +13,8 @@ public class GameDirector : MonoBehaviour {
 
     public MainShipController ship;
 
+	public int portsAlive = 7;
+
     public void StartGame()
     {
         playerDirector.onPlayerCreated += OnPlayerCreated;
@@ -21,6 +23,7 @@ public class GameDirector : MonoBehaviour {
         for (int i = 0; i < ports.Length; i++)
         {
             uiManager.CreatePort(ports[i]);
+			ports [i].health.onDeath += OnPortDead;
         }
 
         playerDirector.Setup(ship.playerSpawnPoint);
@@ -35,6 +38,15 @@ public class GameDirector : MonoBehaviour {
         }
     }
 
+	void OnPortDead () {
+
+		portsAlive -=1;
+
+		if (portsAlive < 1) {
+
+			//Game End;
+		}
+	}
     private void OnPlayerCreated(RPlayerController player)
     {
         uiManager.CreatePlayer(player);

@@ -22,6 +22,7 @@ public class BaseShipController : MonoBehaviour
 
 	public GameObject stationIcon;
 
+
     public virtual void ActionButton()
     {
 		stationIcon.SetActive (false);

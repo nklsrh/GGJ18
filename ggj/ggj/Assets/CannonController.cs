@@ -23,6 +23,10 @@ public class CannonController : BaseShipController {
 
     public ExplosionObject explosion;
 
+	public StorageController storage ;
+
+	bool isPlayerCannon;
+
     void Start()
     {
         poolManager = new ProjectilePoolManager(5);
@@ -88,6 +92,7 @@ public class CannonController : BaseShipController {
 						player.DropItem (item);
 						Destroy (item.gameObject);
 						loadedAmmo++;
+						storage.currentBalls -= 1;
 
 					}
 				}

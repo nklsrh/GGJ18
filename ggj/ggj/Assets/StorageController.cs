@@ -11,6 +11,9 @@ public class StorageController : BaseShipController {
 
 	public Transform[] spawnPoints;
     public int itemsToSpawn = 5;
+
+	public float currentBalls;
+	public float maxBalls = 5;
     
 
     internal override void RemoveControl(RPlayerController playerController)
@@ -23,9 +26,11 @@ public class StorageController : BaseShipController {
 
     void Pickup()
     {
-		for (int i = 0; i < itemsToSpawn; i++)
-        {
-			GameObject item = Instantiate (storageItem, spawnPoints[i].position, Quaternion.identity);
+		for (int i = 0; i < itemsToSpawn; i++) {
+			if (currentBalls < maxBalls) {
+				GameObject item = Instantiate (storageItem, spawnPoints [i].position, Quaternion.identity);
+				currentBalls++;
+			}
 		}
 	}
 

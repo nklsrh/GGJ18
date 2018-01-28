@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PortController : MonoBehaviour
 {
+
     public CannonController cannon;
     public float fireRate = 1.0f;
 
@@ -35,6 +36,7 @@ public class PortController : MonoBehaviour
         if (explosion != null)
         {
             explosion.Setup();
+			Destroy (gameObject, 3f);
         }
     }
 
