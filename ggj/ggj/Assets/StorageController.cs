@@ -29,6 +29,7 @@ public class StorageController : BaseShipController {
 		for (int i = 0; i < itemsToSpawn; i++) {
 			if (currentBalls < maxBalls) {
 				GameObject item = Instantiate (storageItem, spawnPoints [i].position, Quaternion.identity);
+				item.GetComponent<CannonBallItem> ().storage = this;
 				currentBalls++;
 			}
 		}

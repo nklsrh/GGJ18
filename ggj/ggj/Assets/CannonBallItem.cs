@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CannonBallItem : CarryItem {
 
+	public StorageController storage;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -11,6 +13,11 @@ public class CannonBallItem : CarryItem {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+		if (transform.position.y < -2 || transform.position.y > 10) {
+
+			storage.currentBalls -= 1;
+			Destroy (gameObject);
+		}
 	}
 }

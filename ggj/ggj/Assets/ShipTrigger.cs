@@ -12,10 +12,10 @@ public class ShipTrigger : MonoBehaviour {
         RPlayerController rp = other.GetComponent<RPlayerController>();
         if (rp != null)
         {
-            ship.stationIcon.SetActive(true);
 
             if (!rp.IsCarryingItem)
             {
+				ship.stationIcon.SetActive(true);
                 rp.GiveControl(ship, this, isPressAllowed);
             }
         }

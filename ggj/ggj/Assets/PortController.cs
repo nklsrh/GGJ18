@@ -36,7 +36,7 @@ public class PortController : MonoBehaviour
         if (explosion != null)
         {
             explosion.Setup();
-			Destroy (gameObject, 3f);
+			Destroy (gameObject, 8f);
         }
     }
 

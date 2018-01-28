@@ -15,10 +15,21 @@ public class ExplosionObject : BaseObject
         for (int i = 0; i < particleSystems.Length; i++)
         {
             particleSystems[i].Play();
+			StartCoroutine (Explostion (particleSystems[i].startDelay));
+
         }
 
-        audioExplosion.Play();
+
+       // audioExplosion.Play();
     }
+
+	IEnumerator Explostion (float delay) {
+
+		yield return new WaitForSeconds (delay);
+		audioExplosion.Play();
+
+	}
+
 
     public override void Logic()
     {
