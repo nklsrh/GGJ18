@@ -83,12 +83,16 @@ public class Boombox : MonoBehaviour
 			foreach (AudioSource track in musicGameplay) {
 				track.Play ();
 				track.volume = 0;
+
 			}
 			musicGameplay [0].Play ();
 			musicGameplay [0].volume = 1;
+
             battleMusic.volume = 0;
+			battleMusic.Play ();
         } else {
 			musicGameplay [playerCount - 1].volume = 1;
+			battleMusic.volume = 0;
 		}
 	}
 
